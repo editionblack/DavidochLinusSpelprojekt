@@ -13,6 +13,7 @@ namespace SpelProjektLinusDavid
         SpriteBatch spriteBatch;
 
         public Game1()
+        int hej;
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
