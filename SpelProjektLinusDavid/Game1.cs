@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Generic;
 namespace SpelProjektLinusDavid
 {
     /// <summary>
@@ -12,7 +11,9 @@ namespace SpelProjektLinusDavid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        bool potato = false;
+        int funkadaforfan = 42;
+        float elite = 1337;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
