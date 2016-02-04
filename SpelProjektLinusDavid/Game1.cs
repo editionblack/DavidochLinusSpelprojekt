@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Generic;
 namespace SpelProjektLinusDavid
 {
     /// <summary>
@@ -13,11 +12,17 @@ namespace SpelProjektLinusDavid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        bool colliding = false;
+        
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+
+
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
