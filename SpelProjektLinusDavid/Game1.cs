@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            int pavlidis = 70;
             
 
         }
