@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using System;
+using System.Generic;
 namespace SpelProjektLinusDavid
 {
     /// <summary>
@@ -26,7 +27,7 @@ namespace SpelProjektLinusDavid
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            
 
             base.Initialize();
         }
@@ -49,7 +50,7 @@ namespace SpelProjektLinusDavid
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace SpelProjektLinusDavid
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            
 
             base.Update(gameTime);
         }
@@ -75,7 +76,7 @@ namespace SpelProjektLinusDavid
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            
 
             base.Draw(gameTime);
         }
