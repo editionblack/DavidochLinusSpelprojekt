@@ -18,6 +18,9 @@ namespace SpelProjektLinusDavid
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            string hej;
+
         }
 
         /// <summary>
