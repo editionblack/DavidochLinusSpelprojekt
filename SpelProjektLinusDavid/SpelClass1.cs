@@ -12,7 +12,7 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D sprite;
-
+        
 
         public void Update()
         {
