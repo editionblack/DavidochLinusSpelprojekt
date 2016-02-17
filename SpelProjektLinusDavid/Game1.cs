@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System;
 
 namespace SpelProjektLinusDavid
 {
@@ -14,13 +13,19 @@ namespace SpelProjektLinusDavid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Player player;
+        Projectiles bullet;
+        List<Projectiles> bullets;
         public Game1()
         {
 
             
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            int pavlidis = 70;
+            graphics.PreferredBackBufferHeight = 500;
+            graphics.PreferredBackBufferWidth = 750;
+            
 
             
             
@@ -35,8 +40,9 @@ namespace SpelProjektLinusDavid
         /// </summary>
         protected override void Initialize()
         {
-            
-
+            player = new Player();
+            bullet = new Projectiles();
+            bullets = new List<Projectiles>();
             base.Initialize();
         }
 
@@ -48,7 +54,11 @@ namespace SpelProjektLinusDavid
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            player.sprite = Content.Load<Texture2D>("Player");
+            
+            foreach(Projectiles bullet in bullets) {
+                bullet.sprite = Content.Load<Texture2D>("Bullet");
+            }
             // TODO: use this.Content to load your game content here
         }
 
@@ -68,11 +78,37 @@ namespace SpelProjektLinusDavid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            KeyboardState pressedKeys = Keyboard.GetState();
+            if (pressedKeys.IsKeyDown(Keys.W))
+            {
+                player.velocity.Y = -5;
+            }
+            else if (pressedKeys.IsKeyDown(Keys.S))
+            {
+                player.velocity.Y = 5;
+            }
+            else
+                player.velocity.Y = 0;
+            if (pressedKeys.IsKeyDown(Keys.D))
+            {
+                player.velocity.X = 5;
+            }
+            else if (pressedKeys.IsKeyDown(Keys.A))
+            {
+                player.velocity.X = -5;
+            }
+            else player.velocity.X = 0;
 
+
+            if (pressedKeys.IsKeyDown(Keys.Space))
+            {
+                Projectiles newBullet = new Projectiles();
+                newBullet.sprite = Content.Load<Texture2D>("Bullet");
+                bullets.Add(newBullet);
+            }
             
-
+            player.Update();
+            bullet.Update();
             base.Update(gameTime);
         }
 
@@ -83,8 +119,14 @@ namespace SpelProjektLinusDavid
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(player.sprite, player.position, Color.White);
+            foreach (Projectiles bullet in bullets) 
+            {
+                spriteBatch.Draw(bullet.sprite, bullet.position, Color.White);
             
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
