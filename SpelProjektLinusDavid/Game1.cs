@@ -100,15 +100,16 @@ namespace SpelProjektLinusDavid
             else player.velocity.X = 0;
 
 
-            if (pressedKeys.IsKeyDown(Keys.Space))
+            if (pressedKeys.IsKeyDown(Keys.Left))
             {
-                Projectiles newBullet = new Projectiles();
-                newBullet.sprite = Content.Load<Texture2D>("Bullet");
-                bullets.Add(newBullet);
+                bullet = new Projectiles();
+                bullet.sprite = Content.Load<Texture2D>("Bullet");
+                bullets.Add(bullet);
             }
             
             player.Update();
             bullet.Update();
+            foreach()
             base.Update(gameTime);
         }
 

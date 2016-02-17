@@ -12,10 +12,10 @@ namespace SpelProjektLinusDavid
         public Vector2 position, velocity;
         public Texture2D sprite;
         
-        public void Bullets() {
+        public Projectiles() {
 
             position = new Vector2(750 / 2, 500 / 2);
-            velocity = new Vector2(0, 0);
+            velocity = new Vector2(5, 5);
             hitbox = new Rectangle();
         }
 
