@@ -109,7 +109,10 @@ namespace SpelProjektLinusDavid
             
             player.Update();
             bullet.Update();
-            foreach()
+            foreach (Projectiles bulletUpdate in bullets)
+            {
+                bulletUpdate.Update();
+            }
             base.Update(gameTime);
         }
 
