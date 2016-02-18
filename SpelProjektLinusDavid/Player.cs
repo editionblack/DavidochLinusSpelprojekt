@@ -40,24 +40,29 @@ namespace SpelProjektLinusDavid
 
 
             //Kant av banan
-            if (position.X + sprite.Width / 2 > 750)
+
+            //Höger vägg
+            if (position.X + sprite.Width > 750)
+            {
+                position.X = 750 - sprite.Width;
+            }
+
+            // Vänster vägg
+            if (position.X + sprite.Width < sprite.Width)
             {
                 position.X = 0;
             }
 
-            if (position.X + sprite.Width / 2 < 0)
+            //Nedre vägg
+            if (position.Y + sprite.Width > 500)
             {
-                position.X = 750 - sprite.Width / 2;
+                position.Y = 500 - sprite.Width;
             }
 
-            if (position.Y + sprite.Width / 2 > 500)
+            //Övre vägg
+            if (position.Y + sprite.Width < sprite.Width)
             {
                 position.Y = 0;
-            }
-
-            if (position.Y + sprite.Width / 2 < 0)
-            {
-                position.Y = 500 - sprite.Width / 2;
             }
 
             //Hur kollision
