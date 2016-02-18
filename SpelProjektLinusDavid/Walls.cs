@@ -11,7 +11,7 @@ namespace SpelProjektLinusDavid
     class Walls
     {
         Rectangle walls;
-        public Rectangle Walls
+        public Rectangle Solid
         {
             get
             {
