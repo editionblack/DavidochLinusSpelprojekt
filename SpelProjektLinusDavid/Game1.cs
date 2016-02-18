@@ -13,7 +13,7 @@ namespace SpelProjektLinusDavid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        float cooldown, lastShot;
         Player player;
         Projectiles bullet;
         List<Projectiles> bullets;
@@ -43,6 +43,8 @@ namespace SpelProjektLinusDavid
             player = new Player();
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
+            cooldown = 500;
+            lastShot = 0;
             base.Initialize();
         }
 
@@ -78,6 +80,8 @@ namespace SpelProjektLinusDavid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            
             KeyboardState pressedKeys = Keyboard.GetState();
             if (pressedKeys.IsKeyDown(Keys.W))
             {
@@ -99,16 +103,46 @@ namespace SpelProjektLinusDavid
             }
             else player.velocity.X = 0;
 
-
-            if (pressedKeys.IsKeyDown(Keys.Left))
+            if (lastShot > cooldown)
             {
-                bullet = new Projectiles();
-                bullet.sprite = Content.Load<Texture2D>("Bullet");
-                bullets.Add(bullet);
+                if (pressedKeys.IsKeyDown(Keys.Left) && !pressedKeys.IsKeyDown(Keys.Right))
+                {
+
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, -5, 0);
+                    bullet.sprite = Content.Load<Texture2D>("Bullet");
+                    bullets.Add(bullet);
+                    lastShot = 0;
+                }
+
+                if (pressedKeys.IsKeyDown(Keys.Right) && !pressedKeys.IsKeyDown(Keys.Left))
+                {
+
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 5, 0);
+                    bullet.sprite = Content.Load<Texture2D>("Bullet");
+                    bullets.Add(bullet);
+                    lastShot = 0;
+                }
+
+                if (pressedKeys.IsKeyDown(Keys.Up) && !pressedKeys.IsKeyDown(Keys.Down))
+                {
+
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, -5);
+                    bullet.sprite = Content.Load<Texture2D>("Bullet");
+                    bullets.Add(bullet);
+                    lastShot = 0;
+                }
+
+                if (pressedKeys.IsKeyDown(Keys.Down) && !pressedKeys.IsKeyDown(Keys.Up))
+                {
+
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, 5);
+                    bullet.sprite = Content.Load<Texture2D>("Bullet");
+                    bullets.Add(bullet);
+                    lastShot = 0;
+                }
             }
-            
             player.Update();
-            bullet.Update();
+            
             foreach (Projectiles bulletUpdate in bullets)
             {
                 bulletUpdate.Update();
