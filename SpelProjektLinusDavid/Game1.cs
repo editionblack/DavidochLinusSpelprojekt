@@ -4,16 +4,20 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
 
+
+
 namespace SpelProjektLinusDavid
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+    /// 
+
     public class Game1 : Game
     {
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
 
 
         Texture2D bakgrund;
@@ -59,9 +63,9 @@ namespace SpelProjektLinusDavid
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            player.sprite = Content.Load<Texture2D>("Player");
             bakgrund = Content.Load<Texture2D>("bakgrund");
+            player.spriteSheet = Content.Load<Texture2D>("spritess");
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             
             foreach(Projectiles bullet in bullets) {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
@@ -163,16 +167,19 @@ namespace SpelProjektLinusDavid
         protected override void Draw(GameTime gameTime)
         {
             //Bakgrund målas alltid ut först
-
-
             spriteBatch.Begin();
+
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
-            spriteBatch.Draw(player.sprite, player.position, Color.White);
+
+            //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
             {
                 spriteBatch.Draw(bullet.sprite, bullet.position, Color.White);
             
             }
+
+            player.Draw(gameTime, spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
