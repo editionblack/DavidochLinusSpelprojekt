@@ -118,6 +118,7 @@ namespace SpelProjektLinusDavid
                     bullets.Add(bullet);
                     lastShot = 0;
                 }
+                    
 
                 else if (pressedKeys.IsKeyDown(Keys.Right))
                 {

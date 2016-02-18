@@ -52,6 +52,12 @@ namespace SpelProjektLinusDavid
         public void Update()
         {
             position += velocity;
+            
+            // TODO: Kulor borde förstöras när dom rör sig utanför!
+            //if (position.X > 750)
+            //{
+            //    velocity *= -1;
+            //}
         }
     }
 }
