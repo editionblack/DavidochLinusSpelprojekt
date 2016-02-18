@@ -108,7 +108,7 @@ namespace SpelProjektLinusDavid
                 if (pressedKeys.IsKeyDown(Keys.Left) && !pressedKeys.IsKeyDown(Keys.Right))
                 {
 
-                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, -5, 0);
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, -bullet.speed, 0);
                     bullet.sprite = Content.Load<Texture2D>("Bullet");
                     bullets.Add(bullet);
                     lastShot = 0;
@@ -117,7 +117,7 @@ namespace SpelProjektLinusDavid
                 if (pressedKeys.IsKeyDown(Keys.Right) && !pressedKeys.IsKeyDown(Keys.Left))
                 {
 
-                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 5, 0);
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, bullet.speed, 0);
                     bullet.sprite = Content.Load<Texture2D>("Bullet");
                     bullets.Add(bullet);
                     lastShot = 0;
@@ -126,7 +126,7 @@ namespace SpelProjektLinusDavid
                 if (pressedKeys.IsKeyDown(Keys.Up) && !pressedKeys.IsKeyDown(Keys.Down))
                 {
 
-                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, -5);
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, -bullet.speed);
                     bullet.sprite = Content.Load<Texture2D>("Bullet");
                     bullets.Add(bullet);
                     lastShot = 0;
@@ -135,7 +135,7 @@ namespace SpelProjektLinusDavid
                 if (pressedKeys.IsKeyDown(Keys.Down) && !pressedKeys.IsKeyDown(Keys.Up))
                 {
 
-                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, 5);
+                    bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, bullet.speed);
                     bullet.sprite = Content.Load<Texture2D>("Bullet");
                     bullets.Add(bullet);
                     lastShot = 0;

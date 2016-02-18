@@ -11,6 +11,7 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D sprite;
+        public float speed = 5;
         
         public Projectiles() {
 
@@ -24,6 +25,7 @@ namespace SpelProjektLinusDavid
             Vector2 playerPosition = new Vector2(playerPositionX,playerPositionY);
             position = playerPosition;
             velocity = new Vector2(directionX, directionY);
+            
         }
 
         public void Bullets(float velocityX, float velocityY)
