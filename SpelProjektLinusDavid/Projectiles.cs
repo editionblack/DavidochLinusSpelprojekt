@@ -11,7 +11,7 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D sprite;
-        public float speed = 5;
+        public float speed = 10;
         
         public Projectiles() {
 
