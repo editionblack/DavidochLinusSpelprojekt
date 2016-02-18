@@ -14,6 +14,8 @@ namespace SpelProjektLinusDavid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+
         Texture2D bakgrund;
         float cooldown, lastShot;
         Player player;

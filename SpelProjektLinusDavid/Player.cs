@@ -61,20 +61,20 @@ namespace SpelProjektLinusDavid
             }
 
             //Hur kollision
-            if (position.X + sprite.Width > 73)
-            {
-                position.X = 73;
-            }
+            //if (position.X + sprite.Width > 73)
+            //{
+            //    position.X = 73;
+            //}
 
-            if (position.X + sprite.Width < 18)
-            {
-                position.X = 18;
-            }
+            //if (position.X + sprite.Width < 18)
+            //{
+            //    position.X = 18;
+            //}
 
-            if (position.Y + sprite.Width > 30)
-            {
-                position.Y = 30;
-            }
+            //if (position.Y + sprite.Width > 30)
+            //{
+            //    position.Y = 30;
+            //}
 
             //if (position.Y + sprite.Width / 2 < 0)
             //{
