@@ -14,6 +14,7 @@ namespace SpelProjektLinusDavid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D bakgrund;
         Player player;
         Projectiles bullet;
         List<Projectiles> bullets;
@@ -55,6 +56,7 @@ namespace SpelProjektLinusDavid
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.sprite = Content.Load<Texture2D>("Player");
+            bakgrund = Content.Load<Texture2D>("bakgrund");
             
             foreach(Projectiles bullet in bullets) {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
@@ -122,8 +124,11 @@ namespace SpelProjektLinusDavid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //Bakgrund målas alltid ut först
+
+
             spriteBatch.Begin();
+            spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
             spriteBatch.Draw(player.sprite, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
             {
