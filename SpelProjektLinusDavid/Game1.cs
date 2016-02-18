@@ -13,8 +13,8 @@ namespace SpelProjektLinusDavid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         Texture2D bakgrund;
+
         Player player;
         Projectiles bullet;
         List<Projectiles> bullets;
@@ -111,10 +111,6 @@ namespace SpelProjektLinusDavid
             
             player.Update();
             bullet.Update();
-            foreach(Projectiles bulletUpdate in bullets)
-            {
-                bulletUpdate.Update();
-            }
             base.Update(gameTime);
         }
 
