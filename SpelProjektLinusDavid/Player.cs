@@ -29,7 +29,7 @@ namespace SpelProjektLinusDavid
 
         public Player()
         {
-            position = new Vector2(750 / 2, 500 / 2);
+            position = new Vector2(500/2, 500/2);
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
         }
@@ -37,6 +37,50 @@ namespace SpelProjektLinusDavid
         public void Update()
         {
             position += velocity;
+
+
+            //Kant av banan
+            if (position.X + sprite.Width / 2 > 750)
+            {
+                position.X = 0;
+            }
+
+            if (position.X + sprite.Width / 2 < 0)
+            {
+                position.X = 750 - sprite.Width / 2;
+            }
+
+            if (position.Y + sprite.Width / 2 > 500)
+            {
+                position.Y = 0;
+            }
+
+            if (position.Y + sprite.Width / 2 < 0)
+            {
+                position.Y = 500 - sprite.Width / 2;
+            }
+
+            //Hur kollision
+            if (position.X + sprite.Width > 73)
+            {
+                position.X = 73;
+            }
+
+            if (position.X + sprite.Width < 18)
+            {
+                position.X = 18;
+            }
+
+            if (position.Y + sprite.Width > 30)
+            {
+                position.Y = 30;
+            }
+
+            //if (position.Y + sprite.Width / 2 < 0)
+            //{
+            //    position.Y = 500 - sprite.Width / 2;
+            //}
+
         }
     }
 }

@@ -13,6 +13,8 @@ namespace SpelProjektLinusDavid
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Texture2D bakgrund;
         float cooldown, lastShot;
         Player player;
         Projectiles bullet;
@@ -57,6 +59,7 @@ namespace SpelProjektLinusDavid
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             player.sprite = Content.Load<Texture2D>("Player");
+            bakgrund = Content.Load<Texture2D>("bakgrund");
             
             foreach(Projectiles bullet in bullets) {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
@@ -105,7 +108,7 @@ namespace SpelProjektLinusDavid
 
             if (lastShot > cooldown)
             {
-                if (pressedKeys.IsKeyDown(Keys.Left) && !pressedKeys.IsKeyDown(Keys.Right))
+                if (pressedKeys.IsKeyDown(Keys.Left))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, -bullet.speed, 0);
@@ -114,7 +117,7 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
                 }
 
-                if (pressedKeys.IsKeyDown(Keys.Right) && !pressedKeys.IsKeyDown(Keys.Left))
+                else if (pressedKeys.IsKeyDown(Keys.Right))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, bullet.speed, 0);
@@ -123,16 +126,16 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
                 }
 
-                if (pressedKeys.IsKeyDown(Keys.Up) && !pressedKeys.IsKeyDown(Keys.Down))
-                {
+                else if (pressedKeys.IsKeyDown(Keys.Up))
+            {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, -bullet.speed);
-                    bullet.sprite = Content.Load<Texture2D>("Bullet");
-                    bullets.Add(bullet);
+                bullet.sprite = Content.Load<Texture2D>("Bullet");
+                bullets.Add(bullet);
                     lastShot = 0;
-                }
-
-                if (pressedKeys.IsKeyDown(Keys.Down) && !pressedKeys.IsKeyDown(Keys.Up))
+            }
+            
+                else if (pressedKeys.IsKeyDown(Keys.Down))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, bullet.speed);
@@ -156,8 +159,11 @@ namespace SpelProjektLinusDavid
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //Bakgrund målas alltid ut först
+
+
             spriteBatch.Begin();
+            spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
             spriteBatch.Draw(player.sprite, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
             {
