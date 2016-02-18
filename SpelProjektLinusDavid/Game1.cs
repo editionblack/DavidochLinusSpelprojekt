@@ -110,7 +110,7 @@ namespace SpelProjektLinusDavid
 
             if (lastShot > cooldown)
             {
-                if (pressedKeys.IsKeyDown(Keys.Left) && !pressedKeys.IsKeyDown(Keys.Right))
+                if (pressedKeys.IsKeyDown(Keys.Left))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, -bullet.speed, 0);
@@ -119,7 +119,7 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
                 }
 
-                if (pressedKeys.IsKeyDown(Keys.Right) && !pressedKeys.IsKeyDown(Keys.Left))
+                else if (pressedKeys.IsKeyDown(Keys.Right))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, bullet.speed, 0);
@@ -128,7 +128,7 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
                 }
 
-                if (pressedKeys.IsKeyDown(Keys.Up) && !pressedKeys.IsKeyDown(Keys.Down))
+                else if (pressedKeys.IsKeyDown(Keys.Up))
             {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, -bullet.speed);
@@ -137,7 +137,7 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
             }
             
-                if (pressedKeys.IsKeyDown(Keys.Down) && !pressedKeys.IsKeyDown(Keys.Up))
+                else if (pressedKeys.IsKeyDown(Keys.Down))
                 {
 
                     bullet = new Projectiles(player.position.X + 56, player.position.Y + 56, 0, bullet.speed);

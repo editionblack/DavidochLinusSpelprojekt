@@ -29,7 +29,7 @@ namespace SpelProjektLinusDavid
 
         public Player()
         {
-            position = new Vector2(750 / 2, 500 / 2);
+            position = new Vector2(500/2, 500/2);
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
         }
