@@ -23,6 +23,7 @@ namespace SpelProjektLinusDavid
         Texture2D bakgrund;
         float cooldown, lastShot;
         Player player;
+        Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
         public Game1()
@@ -152,7 +153,7 @@ namespace SpelProjektLinusDavid
                 }
             }
             player.Update();
-            
+            enemy1.Update(player.Position);
             foreach (Projectiles bulletUpdate in bullets)
             {
                 bulletUpdate.Update();
