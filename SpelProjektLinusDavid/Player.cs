@@ -36,7 +36,7 @@ namespace SpelProjektLinusDavid
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
 
-            sourceRectangle = new Rectangle(0, 0, 50, 40);
+            sourceRectangle = new Rectangle(0, 0, 48, 40);
         }
 
         public void Update()
@@ -118,7 +118,10 @@ namespace SpelProjektLinusDavid
                     sourceRectangle.Y = 120;
                 if (pressedKeys.IsKeyDown(Keys.A))
                     sourceRectangle.Y = 80;
+                else
+                {
 
+                }
 
             }
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
