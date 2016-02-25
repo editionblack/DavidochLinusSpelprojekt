@@ -18,6 +18,17 @@ namespace SpelProjektLinusDavid
         Rectangle sourceRectangle;
 
         double elapsed = 0;
+
+        public Vector2 Position
+        {
+            get
+            {
+                Vector2 center= new Vector2();
+                center.X = position.X + 24;
+                center.Y = position.Y + 20;
+                return center;
+            }
+        }
         //public Rectangle Hitbox
         //{
         //    get

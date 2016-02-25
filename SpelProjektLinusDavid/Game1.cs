@@ -23,6 +23,7 @@ namespace SpelProjektLinusDavid
         Texture2D bakgrund;
         float cooldown, lastShot;
         Player player;
+        Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
         public Game1()
@@ -66,6 +67,7 @@ namespace SpelProjektLinusDavid
             bakgrund = Content.Load<Texture2D>("bakgrund");
             player.spriteSheet = Content.Load<Texture2D>("spritess");
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            enemy1.sprite = Content.Load<Texture2D>("enemy");
             
             foreach(Projectiles bullet in bullets) {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
@@ -152,7 +154,7 @@ namespace SpelProjektLinusDavid
                 }
             }
             player.Update();
-            
+            enemy1.Update(player.Position);
             foreach (Projectiles bulletUpdate in bullets)
             {
                 bulletUpdate.Update();
