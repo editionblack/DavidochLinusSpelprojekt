@@ -16,9 +16,10 @@ namespace SpelProjektLinusDavid
         public float speed = 3;
         Rectangle hitbox;
 
+
         Rectangle sourceRectangle;
 
-
+        public Vector2 startPoint = new Vector2(50,50);
 
         public void Update(Vector2 playerPosition) 
         {
@@ -28,9 +29,9 @@ namespace SpelProjektLinusDavid
             position += velocity;
         }
 
-        public void Draw()
-        {
+        //public void Draw()
+        //{
 
-        }
+        //}
     }
 }

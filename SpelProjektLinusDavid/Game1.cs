@@ -49,6 +49,7 @@ namespace SpelProjektLinusDavid
         /// </summary>
         protected override void Initialize()
         {
+            enemy1 = new Enemies();
             player = new Player();
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
@@ -172,6 +173,7 @@ namespace SpelProjektLinusDavid
             spriteBatch.Begin();
 
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
+            spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
 
             //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
