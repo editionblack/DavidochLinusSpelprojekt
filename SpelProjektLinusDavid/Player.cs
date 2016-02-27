@@ -12,7 +12,7 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D spriteSheet, sprite;
-
+        //public float distance;
         Rectangle hitbox;
 
         Rectangle sourceRectangle;
@@ -53,7 +53,9 @@ namespace SpelProjektLinusDavid
         public void Update()
         {
             position += velocity;
-
+            
+            //Hur långt borta från fienden spelaren är
+            // distance = Vector2.Distance(player, enemy);
 
             //Kant av banan
 

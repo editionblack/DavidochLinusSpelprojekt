@@ -26,6 +26,7 @@ namespace SpelProjektLinusDavid
         Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
+        
         public Game1()
         {
 
@@ -160,6 +161,12 @@ namespace SpelProjektLinusDavid
             {
                 bulletUpdate.Update();
             }
+
+            //if(player.distance < 5)  
+            //{
+            //    Färg = Color.Red;
+            //}
+
             base.Update(gameTime);
         }
 
@@ -173,7 +180,7 @@ namespace SpelProjektLinusDavid
             spriteBatch.Begin();
 
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
-            spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
+            spriteBatch.Draw(enemy1.sprite, enemy1.position, Color.White);
 
             //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
