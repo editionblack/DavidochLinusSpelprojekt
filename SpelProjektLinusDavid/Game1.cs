@@ -48,7 +48,7 @@ namespace SpelProjektLinusDavid
             bullets = new List<Projectiles>();
             cooldown = 500;
             lastShot = 0;
-                base.Initialize();
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -61,9 +61,9 @@ namespace SpelProjektLinusDavid
             
             foreach(Enemies enemy in enemies)
             {
-                enemy1.sprite = Content.Load<Texture2D>("enemy");
+            enemy1.sprite = Content.Load<Texture2D>("enemy");
             }
-
+            
             foreach(Projectiles bullet in bullets)
             {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
@@ -173,6 +173,12 @@ namespace SpelProjektLinusDavid
             {
                 bulletUpdate.Update();
             }
+
+            //if(player.distance < 5)  
+            //{
+            //    Färg = Color.Red;
+            //}
+
             base.Update(gameTime);
         }
 
@@ -190,6 +196,7 @@ namespace SpelProjektLinusDavid
 
             }
 
+            //spriteBatch.Draw(enemy1.sprite, enemy1.position, Color.White);
 
             //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 

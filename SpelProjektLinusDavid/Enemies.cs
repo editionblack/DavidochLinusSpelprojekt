@@ -22,6 +22,17 @@ namespace SpelProjektLinusDavid
 
         Rectangle sourceRectangle;
 
+        public Vector2 Position
+        {
+            get
+            {
+                Vector2 center = new Vector2();
+                center.X = position.X + 24;
+                center.Y = position.Y + 20;
+                return center;
+            }
+        }
+
         public Vector2 startPoint = new Vector2(50,50);
 
         public void Update(Vector2 playerPosition) 
@@ -30,9 +41,12 @@ namespace SpelProjektLinusDavid
             velocity.Normalize();
             velocity *= speed;
             position += velocity;
+
+            //Vector2.Distance()        THIS IS WHAT WE USE FOR HITBOX, IT I GENIUS MODE I PROMISE
         }
         
 
+        
         //public void Draw()
         //{
 
