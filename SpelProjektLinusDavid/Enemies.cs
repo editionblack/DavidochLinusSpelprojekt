@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpelProjektLinusDavid
 {
+    /// <summary>
+    /// TRYCK PÅ "K" FÖR ATT SPAWNA FIENDER, JAG HAR FÖRSÖKT ATT KUNNA SPAWNA FLERA, WITHOUT SUCCESS :(
+    /// </summary>
     class Enemies
     {
         public Vector2 position, velocity;
@@ -28,10 +31,15 @@ namespace SpelProjektLinusDavid
             velocity *= speed;
             position += velocity;
         }
+        
 
         //public void Draw()
         //{
 
+        //}
+
+        //internal void Update()
+        //{
         //}
     }
 }

@@ -5,15 +5,22 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 namespace SpelProjektLinusDavid
 {
+
+
+    /// <summary>
+    /// TRYCK PÅ "K" FÖR ATT SPAWNA FIENDEN, JAG HAR FÖRSÖKT ATT KUNNA SPAWNA FLERA, WITHOUT SUCCESS :(
+    /// </summary>
     class Projectiles
     {
         public Vector2 position, velocity;
         public Texture2D sprite;
         public float speed = 10;
         
-        public Projectiles() {
+        public Projectiles()
+        {
 
             position = new Vector2(750/2, 500 / 2);
             velocity = new Vector2(0, 0);

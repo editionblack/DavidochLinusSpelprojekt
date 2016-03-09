@@ -8,10 +8,6 @@ using System;
 
 namespace SpelProjektLinusDavid
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
-    /// 
 
     public class Game1 : Game
     {
@@ -21,11 +17,12 @@ namespace SpelProjektLinusDavid
 
 
         Texture2D bakgrund;
-        float cooldown, lastShot;
+        float cooldown, lastShot, lastEnemy;
         Player player;
         Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
+        List<Enemies> enemies;
         public Game1()
         {
 
@@ -41,60 +38,64 @@ namespace SpelProjektLinusDavid
 
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            enemy1 = new Enemies();
             player = new Player();
+                enemy1 = new Enemies();
+                enemies = new List<Enemies>();
+                lastEnemy = 0;
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
             cooldown = 500;
             lastShot = 0;
-            base.Initialize();
+                base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             bakgrund = Content.Load<Texture2D>("bakgrund");
             player.spriteSheet = Content.Load<Texture2D>("spritess");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            enemy1.sprite = Content.Load<Texture2D>("enemy");
+            //enemy1.sprite = Content.Load<Texture2D>("enemy");
             
-            foreach(Projectiles bullet in bullets) {
+            foreach(Enemies enemy in enemies)
+            {
+                enemy1.sprite = Content.Load<Texture2D>("enemy");
+            }
+
+            foreach(Projectiles bullet in bullets)
+            {
                 bullet.sprite = Content.Load<Texture2D>("Bullet");
             }
             // TODO: use this.Content to load your game content here
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
             
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            lastEnemy += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             
+
             KeyboardState pressedKeys = Keyboard.GetState();
+            //Spawnar en enemy
+            if (lastEnemy > cooldown)
+            {
+                if (pressedKeys.IsKeyDown(Keys.K))
+                {
+                    enemy1 = new Enemies();
+                    enemy1.sprite = Content.Load<Texture2D>("enemy");
+                    enemies.Add(enemy1);
+                    lastEnemy = 0;
+                }
+            }
+
+            #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
             {
                 player.velocity.Y = -5;
@@ -114,7 +115,8 @@ namespace SpelProjektLinusDavid
                 player.velocity.X = -5;
             }
             else player.velocity.X = 0;
-
+            #endregion
+            #region Bullet controll
             if (lastShot > cooldown)
             {
                 if (pressedKeys.IsKeyDown(Keys.Left))
@@ -154,8 +156,19 @@ namespace SpelProjektLinusDavid
                     lastShot = 0;
                 }
             }
+            #endregion
+
+
+
+
             player.Update();
-            enemy1.Update(player.Position);
+            //enemy1.Update(player.Position);
+
+            foreach (Enemies enemyUpdate in enemies)
+            {
+                enemyUpdate.Update(player.position);
+            }
+
             foreach (Projectiles bulletUpdate in bullets)
             {
                 bulletUpdate.Update();
@@ -163,17 +176,20 @@ namespace SpelProjektLinusDavid
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             //Bakgrund målas alltid ut först
             spriteBatch.Begin();
 
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
-            spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
+            //spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
+
+            foreach (Enemies enemy in enemies)
+            {
+                spriteBatch.Draw(enemy1.sprite, enemy1.position, Color.Red);
+
+            }
+
 
             //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
@@ -187,6 +203,8 @@ namespace SpelProjektLinusDavid
             spriteBatch.End();
 
             base.Draw(gameTime);
+
+            
         }
     }
 }
