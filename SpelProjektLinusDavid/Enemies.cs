@@ -45,7 +45,7 @@ namespace SpelProjektLinusDavid
             //Vector2.Distance()        THIS IS WHAT WE USE FOR HITBOX, IT I GENIUS MODE I PROMISE
         }
         
-
+        
         
         //public void Draw()
         //{
