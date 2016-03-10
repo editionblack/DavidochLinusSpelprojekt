@@ -173,6 +173,14 @@ namespace SpelProjektLinusDavid
                 bulletUpdate.Update();
             }
 
+            //for(int i=0;i<bullets.Count;) 
+            //{
+            //    if(Rectangle.Intersect(bullet.Hitbox,))
+            //    for (int i = 0; i < enemies.Count; )
+            //    {
+
+            //    }
+            //}
             //if(player.distance < 5)  
             //{
             //    Färg = Color.Red;
