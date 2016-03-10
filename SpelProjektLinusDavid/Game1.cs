@@ -115,6 +115,7 @@ namespace SpelProjektLinusDavid
             }
             else player.velocity.X = 0;
             #endregion
+
             #region Bullet controll
             if (lastShot > cooldown)
             {
