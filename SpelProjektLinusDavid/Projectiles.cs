@@ -54,7 +54,6 @@ namespace SpelProjektLinusDavid
                 hitbox.Height = sprite.Height;
                 return hitbox;
             }
-
         }
         public void Update()
         {
