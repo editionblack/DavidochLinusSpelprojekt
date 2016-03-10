@@ -83,6 +83,8 @@ namespace SpelProjektLinusDavid
                 position.Y = 0;
             }
 
+
+            #region
             //Hur kollision
             //if (position.X + sprite.Width > 73)
             //{
@@ -104,6 +106,7 @@ namespace SpelProjektLinusDavid
             //    position.Y = 500 - sprite.Width / 2;
             //}
 
+            #endregion
         }
 
 

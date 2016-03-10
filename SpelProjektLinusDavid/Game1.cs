@@ -88,10 +88,9 @@ namespace SpelProjektLinusDavid
             {
                 if (pressedKeys.IsKeyDown(Keys.K))
                 {
-                    enemy1 = new Enemies();
-                    enemy1.sprite = Content.Load<Texture2D>("enemy");
-                    enemies.Add(enemy1);
-                    lastEnemy = 0;
+                    Enemies newEnemy = new Enemies();
+                    newEnemy.sprite = Content.Load<Texture2D>("enemy");
+                    enemies.Add(newEnemy);
                 }
             }
 
@@ -192,7 +191,7 @@ namespace SpelProjektLinusDavid
 
             foreach (Enemies enemy in enemies)
             {
-                spriteBatch.Draw(enemy1.sprite, enemy1.position, Color.Red);
+                spriteBatch.Draw(enemy.sprite, enemy.position, Color.Red);
 
             }
 

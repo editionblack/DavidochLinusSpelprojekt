@@ -33,6 +33,13 @@ namespace SpelProjektLinusDavid
             }
         }
 
+        //public void Bullets(float velocityX, float velocityY)
+        //{
+        //    position = new Vector2(50, 50);
+        //    velocity = new Vector2(velocityX, velocityY);
+        //    hitbox = new Rectangle();
+        //}
+
         public Vector2 startPoint = new Vector2(50,50);
 
         public void Update(Vector2 playerPosition) 
