@@ -173,22 +173,27 @@ namespace SpelProjektLinusDavid
                 bulletUpdate.Update();
             }
 
-            for(int i=0;i<bullets.Count;) 
+            for (int i = 0; i < bullets.Count;i++ )
             {
-                
-                for (int j = 0; j < enemies.Count; )
+
+                for (int j = 0; j < enemies.Count; j++ )
                 {
-                    if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox)) 
-                    {
-                        bullets.Remove(bullet);
-                        enemies.Remove(enemy1);
-                    }
-                    else
-                    {
-                        i++;
-                        j++;
-                    }
                     
+                    
+                        if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
+                        {
+                            bullets.RemoveAt(i); if (bullets.Count == 0) { break; } else { i--; }
+                            enemies.RemoveAt(j);
+
+                        }
+                        else
+                        {
+                            
+
+                        }
+                    
+                    
+
                 }
             }
             //if(player.distance < 5)  
@@ -202,7 +207,7 @@ namespace SpelProjektLinusDavid
         protected override void Draw(GameTime gameTime)
         {
             //Bakgrund målas alltid ut först
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, null);
 
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
             //spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
