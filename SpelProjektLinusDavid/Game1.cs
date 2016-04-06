@@ -97,21 +97,21 @@ namespace SpelProjektLinusDavid
             #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
             {
-                player.velocity.Y = -5;
+                player.velocity.Y = -player.speed;
             }
             else if (pressedKeys.IsKeyDown(Keys.S))
             {
-                player.velocity.Y = 5;
+                player.velocity.Y = player.speed;
             }
             else
                 player.velocity.Y = 0;
             if (pressedKeys.IsKeyDown(Keys.D))
             {
-                player.velocity.X = 5;
+                player.velocity.X = player.speed;
             }
             else if (pressedKeys.IsKeyDown(Keys.A))
             {
-                player.velocity.X = -5;
+                player.velocity.X = -player.speed;
             }
             else player.velocity.X = 0;
             #endregion
@@ -183,15 +183,16 @@ namespace SpelProjektLinusDavid
                     
                         if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
                         {
-                            bullets.RemoveAt(i); if (bullets.Count == 0) { break; } else { i--; }
+                            bullets.RemoveAt(i);
                             enemies.RemoveAt(j);
-
-                        }
-                        else
-                        {
+                            if (bullets.Count == 0)
+                                break;
+                            else
+                                i--;
                             
 
                         }
+                       
                     
                     
 
