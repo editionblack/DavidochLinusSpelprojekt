@@ -203,7 +203,7 @@ namespace SpelProjektLinusDavid
         protected override void Draw(GameTime gameTime)
         {
             //Bakgrund målas alltid ut först
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
             //spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
