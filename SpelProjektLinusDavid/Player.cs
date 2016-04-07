@@ -15,7 +15,8 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed;
-
+        public int health;
+        
         Rectangle sourceRectangle;
 
         double elapsed = 0;
@@ -30,17 +31,17 @@ namespace SpelProjektLinusDavid
                 return center;
             }
         }
-        //public Rectangle Hitbox
-        //{
-        //    get
-        //    {
-        //        hitbox.X = (int)position.X;
-        //        hitbox.Y = (int)position.Y;
-        //        hitbox.Width = sprite.Width;
-        //        hitbox.Height = sprite.Height;
-        //        return hitbox;
-        //    }
-        //}
+        public Rectangle Hitbox
+        {
+            get
+            {
+                hitbox.X = (int)position.X;
+                hitbox.Y = (int)position.Y;
+                hitbox.Width = spriteSheet.Width;
+                hitbox.Height = spriteSheet.Height;
+                return hitbox;
+            }
+        }
 
         public Player()
         {
@@ -49,6 +50,7 @@ namespace SpelProjektLinusDavid
             hitbox = new Rectangle();
             speed = 5; 
             sourceRectangle = new Rectangle(0, 0, 48, 40);
+            health = 100;
         }
 
         public void Update()

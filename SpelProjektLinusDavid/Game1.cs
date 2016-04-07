@@ -17,7 +17,7 @@ namespace SpelProjektLinusDavid
 
 
         Texture2D bakgrund;
-        float cooldown, lastShot, lastEnemy;
+        float cooldown, lastShot, lastEnemy, lastHit;
         Player player;
         Enemies enemy1;
         Projectiles bullet;
@@ -48,6 +48,7 @@ namespace SpelProjektLinusDavid
             bullets = new List<Projectiles>();
             cooldown = 500;
             lastShot = 0;
+            lastHit = 0;
             base.Initialize();
         }
 
@@ -80,7 +81,7 @@ namespace SpelProjektLinusDavid
         {
             lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             lastEnemy += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            
+            lastHit += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
@@ -91,6 +92,7 @@ namespace SpelProjektLinusDavid
                     Enemies newEnemy = new Enemies();
                     newEnemy.sprite = Content.Load<Texture2D>("enemy");
                     enemies.Add(newEnemy);
+                    lastEnemy = 0;
                 }
             }
 
@@ -198,11 +200,28 @@ namespace SpelProjektLinusDavid
 
                 }
             }
+
+            for (int i = 0; i < enemies.Count; i++) 
+            {
+                if (player.Hitbox.Intersects(enemies[i].Hitbox))
+                {
+                    if (lastHit > cooldown)
+                    {
+                        player.health -= 10;
+                        lastHit = 0;
+                    }
+                }
+            } 
             //if(player.distance < 5)  
             //{
             //    Färg = Color.Red;
             //}
-
+            if (player.health == 0 || player.health < 0)
+            {
+                //Game newGame = new Game1();
+                //newGame.Run();
+                Environment.Exit(0);
+            }
             base.Update(gameTime);
         }
 
