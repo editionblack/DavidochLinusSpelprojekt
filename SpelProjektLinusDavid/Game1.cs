@@ -55,7 +55,7 @@ namespace SpelProjektLinusDavid
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             bakgrund = Content.Load<Texture2D>("bakgrund");
-            player.spriteSheet = Content.Load<Texture2D>("spritess");
+            player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //enemy1.sprite = Content.Load<Texture2D>("enemy");
             
@@ -91,6 +91,7 @@ namespace SpelProjektLinusDavid
                     Enemies newEnemy = new Enemies();
                     newEnemy.sprite = Content.Load<Texture2D>("enemy");
                     enemies.Add(newEnemy);
+                    lastEnemy = 0;
                 }
             }
 
@@ -174,27 +175,22 @@ namespace SpelProjektLinusDavid
                 bulletUpdate.Update();
             }
 
-            for (int i = 0; i < bullets.Count;i++ )
+            for (int i = 0; i < bullets.Count; i++)
             {
-
+                
                 for (int j = 0; j < enemies.Count; j++ )
                 {
-                    
-                    
-                        if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
-                        {
-                            bullets.RemoveAt(i); if (bullets.Count == 0) { break; } else { i--; }
-                            enemies.RemoveAt(j);
 
-                        }
+                    if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
+                    {
+                        bullets.RemoveAt(i);
+                        enemies.RemoveAt(j);
+
+                        if (bullets.Count == 0)
+                            break;
                         else
-                        {
-                            
-
-                        }
-                    
-                    
-
+                            i--;
+                    }
                 }
             }
             //if(player.distance < 5)  
