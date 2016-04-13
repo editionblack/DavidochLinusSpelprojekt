@@ -19,10 +19,10 @@ namespace SpelProjektLinusDavid
         Texture2D bakgrund;
         float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown;
         Player player;
-        //Enemies enemy1;
+        Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
-        //List<Enemies> enemies;
+        List<Enemies> enemies;
         public Game1()
         {
 
