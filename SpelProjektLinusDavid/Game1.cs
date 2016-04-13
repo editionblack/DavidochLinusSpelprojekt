@@ -17,12 +17,12 @@ namespace SpelProjektLinusDavid
 
 
         Texture2D bakgrund;
-        float cooldown, lastShot, lastEnemy, lastHit;
+        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown;
         Player player;
-        Enemies enemy1;
+        //Enemies enemy1;
         Projectiles bullet;
         List<Projectiles> bullets;
-        List<Enemies> enemies;
+        //List<Enemies> enemies;
         public Game1()
         {
 
@@ -47,8 +47,10 @@ namespace SpelProjektLinusDavid
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
             cooldown = 500;
+            enemyCooldown = 250;
             lastShot = 0;
             lastHit = 0;
+            amountPerWave = 10;
             base.Initialize();
         }
 
@@ -85,16 +87,17 @@ namespace SpelProjektLinusDavid
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
-            if (lastEnemy > cooldown)
-            {
-                if (pressedKeys.IsKeyDown(Keys.K))
+            if (enemies.Count < amountPerWave)
                 {
-                    Enemies newEnemy = new Enemies();
-                    newEnemy.sprite = Content.Load<Texture2D>("enemy");
-                    enemies.Add(newEnemy);
-                    lastEnemy = 0;
+
+                    if (lastEnemy > enemyCooldown)
+                    {
+                        Enemies newEnemy = new Enemies();
+                        newEnemy.sprite = Content.Load<Texture2D>("enemy");
+                        enemies.Add(newEnemy);
+                        lastEnemy = 0;
+                    }
                 }
-            }
 
             #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
@@ -207,7 +210,7 @@ namespace SpelProjektLinusDavid
                 {
                     if (lastHit > cooldown)
                     {
-                        player.health -= 10;
+                        player.health -= 25;
                         lastHit = 0;
                     }
                 }
