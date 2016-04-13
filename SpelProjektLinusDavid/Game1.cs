@@ -25,17 +25,10 @@ namespace SpelProjektLinusDavid
         List<Enemies> enemies;
         public Game1()
         {
-
-            
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 500;
             graphics.PreferredBackBufferWidth = 750;
-            
-
-            
-            
-
         }
 
         protected override void Initialize()
@@ -78,7 +71,6 @@ namespace SpelProjektLinusDavid
         {
             
         }
-
         protected override void Update(GameTime gameTime)
         {
             lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -144,13 +136,13 @@ namespace SpelProjektLinusDavid
                 }
 
                 else if (pressedKeys.IsKeyDown(Keys.Up))
-            {
+                {
 
                     bullet = new Projectiles(player.position.X+10, player.position.Y+10, 0, -bullet.speed);
-                bullet.sprite = Content.Load<Texture2D>("Bullet");
-                bullets.Add(bullet);
+                    bullet.sprite = Content.Load<Texture2D>("Bullet");
+                    bullets.Add(bullet);
                     lastShot = 0;
-            }
+                }
             
                 else if (pressedKeys.IsKeyDown(Keys.Down))
                 {
@@ -194,13 +186,7 @@ namespace SpelProjektLinusDavid
                                 break;
                             else
                                 i--;
-                            
-
                         }
-                       
-                    
-                    
-
                 }
             }
 

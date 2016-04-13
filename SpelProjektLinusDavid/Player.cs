@@ -16,7 +16,7 @@ namespace SpelProjektLinusDavid
         Rectangle hitbox;
         public float speed;
         public int health;
-        
+
         Rectangle sourceRectangle;
 
         double elapsed = 0;
@@ -48,9 +48,8 @@ namespace SpelProjektLinusDavid
             position = new Vector2(500/2, 500/2);
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
-            speed = 5; 
+
             sourceRectangle = new Rectangle(0, 0, 48, 40);
-            health = 100;
         }
 
         public void Update()
@@ -118,28 +117,60 @@ namespace SpelProjektLinusDavid
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsed > 150)
+            if (elapsed > 90)
             {
                 elapsed = 0;
-                sourceRectangle.X += 50;
-                if (sourceRectangle.X > 150)
+                sourceRectangle.X += 64; //deras bredd
+                if (sourceRectangle.X > 620) //bildens bredd
                 {
                     sourceRectangle.X = 0;
                 }
 
                 KeyboardState pressedKeys = Keyboard.GetState();
+                bool lastPressedKeyW, lastPressedKeyS, lastPressedKeyD, lastPressedKeyA;
 
                 if (pressedKeys.IsKeyDown(Keys.W))
-                    sourceRectangle.Y = 40;
-                if (pressedKeys.IsKeyDown(Keys.S))
-                    sourceRectangle.Y = 0;
-                if (pressedKeys.IsKeyDown(Keys.D))
-                    sourceRectangle.Y = 120;
-                if (pressedKeys.IsKeyDown(Keys.A))
-                    sourceRectangle.Y = 80;
+                {
+                    sourceRectangle.Y = 388;
+                    lastPressedKeyW = true;
+                }
+                else if (pressedKeys.IsKeyDown(Keys.S))
+                {
+                    sourceRectangle.Y = 263;
+                    lastPressedKeyS = true;
+                }
+                else if (pressedKeys.IsKeyDown(Keys.D))
+                {
+                    sourceRectangle.Y = 456;
+                    lastPressedKeyD = true;
+                }
+                else if (pressedKeys.IsKeyDown(Keys.A))
+                {
+                    sourceRectangle.Y = 328;
+                    lastPressedKeyA = true;
+                }
                 else
                 {
-
+                    if (lastPressedKeyS = true)
+                    {
+                        sourceRectangle.Y = 7;
+                        sourceRectangle.X = 0;
+                    }
+                    else if (lastPressedKeyA = true)
+                    {
+                    sourceRectangle.Y = 80;
+                        sourceRectangle.X = 0;
+                    }
+                    else if (lastPressedKeyW = true)
+                    {
+                        sourceRectangle.Y = 145;
+                        sourceRectangle.X = 0;
+                    }
+                    else if (lastPressedKeyD = true)
+                    {
+                        sourceRectangle.Y = 210;
+                        sourceRectangle.X = 0;
+                    }
                 }
 
             }
