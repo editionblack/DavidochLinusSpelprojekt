@@ -17,7 +17,7 @@ namespace SpelProjektLinusDavid
 
 
         Texture2D bakgrund;
-        float cooldown, lastShot, lastEnemy;
+        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown;
         Player player;
         Enemies enemy1;
         Projectiles bullet;
@@ -47,7 +47,10 @@ namespace SpelProjektLinusDavid
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
             cooldown = 500;
+            enemyCooldown = 250;
             lastShot = 0;
+            lastHit = 0;
+            amountPerWave = 10;
             base.Initialize();
         }
 
@@ -55,7 +58,7 @@ namespace SpelProjektLinusDavid
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             bakgrund = Content.Load<Texture2D>("bakgrund");
-            player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
+            player.spriteSheet = Content.Load<Texture2D>("spritess");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //enemy1.sprite = Content.Load<Texture2D>("enemy");
             
@@ -80,39 +83,40 @@ namespace SpelProjektLinusDavid
         {
             lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             lastEnemy += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            
+            lastHit += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
-            if (lastEnemy > cooldown)
-            {
-                if (pressedKeys.IsKeyDown(Keys.K))
+            if (enemies.Count < amountPerWave)
                 {
-                    Enemies newEnemy = new Enemies();
-                    newEnemy.sprite = Content.Load<Texture2D>("enemy");
-                    enemies.Add(newEnemy);
-                    lastEnemy = 0;
+
+                    if (lastEnemy > enemyCooldown)
+                    {
+                        Enemies newEnemy = new Enemies();
+                        newEnemy.sprite = Content.Load<Texture2D>("enemy");
+                        enemies.Add(newEnemy);
+                        lastEnemy = 0;
+                    }
                 }
-            }
 
             #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
             {
-                player.velocity.Y = -5;
+                player.velocity.Y = -player.speed;
             }
             else if (pressedKeys.IsKeyDown(Keys.S))
             {
-                player.velocity.Y = 5;
+                player.velocity.Y = player.speed;
             }
             else
                 player.velocity.Y = 0;
             if (pressedKeys.IsKeyDown(Keys.D))
             {
-                player.velocity.X = 5;
+                player.velocity.X = player.speed;
             }
             else if (pressedKeys.IsKeyDown(Keys.A))
             {
-                player.velocity.X = -5;
+                player.velocity.X = -player.speed;
             }
             else player.velocity.X = 0;
             #endregion
@@ -175,29 +179,52 @@ namespace SpelProjektLinusDavid
                 bulletUpdate.Update();
             }
 
-            for (int i = 0; i < bullets.Count; i++)
+            for (int i = 0; i < bullets.Count;i++ )
             {
-                
+
                 for (int j = 0; j < enemies.Count; j++ )
                 {
+                    
+                    
+                        if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
+                        {
+                            bullets.RemoveAt(i);
+                            enemies.RemoveAt(j);
+                            if (bullets.Count == 0)
+                                break;
+                            else
+                                i--;
+                            
 
-                    if (bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
-                    {
-                        bullets.RemoveAt(i);
-                        enemies.RemoveAt(j);
+                        }
+                       
+                    
+                    
 
-                        if (bullets.Count == 0)
-                            break;
-                        else
-                            i--;
-                    }
                 }
             }
+
+            for (int i = 0; i < enemies.Count; i++) 
+            {
+                if (player.Hitbox.Intersects(enemies[i].Hitbox))
+                {
+                    if (lastHit > cooldown)
+                    {
+                        player.health -= 25;
+                        lastHit = 0;
+                    }
+                }
+            } 
             //if(player.distance < 5)  
             //{
             //    Färg = Color.Red;
             //}
-
+            if (player.health == 0 || player.health < 0)
+            {
+                //Game newGame = new Game1();
+                //newGame.Run();
+                Environment.Exit(0);
+            }
             base.Update(gameTime);
         }
 

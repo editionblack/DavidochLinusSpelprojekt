@@ -14,7 +14,9 @@ namespace SpelProjektLinusDavid
         public Texture2D spriteSheet, sprite;
         //public float distance;
         Rectangle hitbox;
-
+        public float speed;
+        public int health;
+        
         Rectangle sourceRectangle;
 
         double elapsed = 0;
@@ -29,25 +31,26 @@ namespace SpelProjektLinusDavid
                 return center;
             }
         }
-        //public Rectangle Hitbox
-        //{
-        //    get
-        //    {
-        //        hitbox.X = (int)position.X;
-        //        hitbox.Y = (int)position.Y;
-        //        hitbox.Width = sprite.Width;
-        //        hitbox.Height = sprite.Height;
-        //        return hitbox;
-        //    }
-        //}
+        public Rectangle Hitbox
+        {
+            get
+            {
+                hitbox.X = (int)position.X;
+                hitbox.Y = (int)position.Y;
+                hitbox.Width = spriteSheet.Width;
+                hitbox.Height = spriteSheet.Height;
+                return hitbox;
+            }
+        }
 
         public Player()
         {
             position = new Vector2(500/2, 500/2);
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
-
-            sourceRectangle = new Rectangle(0, 0, 60, 60);
+            speed = 5; 
+            sourceRectangle = new Rectangle(0, 0, 48, 40);
+            health = 100;
         }
 
         public void Update()
@@ -115,60 +118,28 @@ namespace SpelProjektLinusDavid
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsed > 90)
+            if (elapsed > 150)
             {
                 elapsed = 0;
-                sourceRectangle.X += 64; //deras bredd
-                if (sourceRectangle.X > 620) //bildens bredd
+                sourceRectangle.X += 50;
+                if (sourceRectangle.X > 150)
                 {
                     sourceRectangle.X = 0;
                 }
 
                 KeyboardState pressedKeys = Keyboard.GetState();
-                bool lastPressedKeyW, lastPressedKeyS, lastPressedKeyD, lastPressedKeyA;
 
                 if (pressedKeys.IsKeyDown(Keys.W))
-                {
-                    sourceRectangle.Y = 388;
-                    lastPressedKeyW = true;
-                }
-                else if (pressedKeys.IsKeyDown(Keys.S))
-                {
-                    sourceRectangle.Y = 263;
-                    lastPressedKeyS = true;
-                }
-                else if (pressedKeys.IsKeyDown(Keys.D))
-                {
-                    sourceRectangle.Y = 456;
-                    lastPressedKeyD = true;
-                }
-                else if (pressedKeys.IsKeyDown(Keys.A))
-                {
-                    sourceRectangle.Y = 328;
-                    lastPressedKeyA = true;
-                }
+                    sourceRectangle.Y = 40;
+                if (pressedKeys.IsKeyDown(Keys.S))
+                    sourceRectangle.Y = 0;
+                if (pressedKeys.IsKeyDown(Keys.D))
+                    sourceRectangle.Y = 120;
+                if (pressedKeys.IsKeyDown(Keys.A))
+                    sourceRectangle.Y = 80;
                 else
                 {
-                    if (lastPressedKeyS = true)
-                    {
-                        sourceRectangle.Y = 7;
-                        sourceRectangle.X = 0;
-                    }
-                    else if (lastPressedKeyA = true)
-                    {
-                        sourceRectangle.Y = 80;
-                        sourceRectangle.X = 0;
-                    }
-                    else if (lastPressedKeyW = true)
-                    {
-                        sourceRectangle.Y = 145;
-                        sourceRectangle.X = 0;
-                    }
-                    else if (lastPressedKeyD = true)
-                    {
-                        sourceRectangle.Y = 210;
-                        sourceRectangle.X = 0;
-                    }
+
                 }
 
             }
