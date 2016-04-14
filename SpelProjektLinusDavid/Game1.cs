@@ -51,7 +51,7 @@ namespace SpelProjektLinusDavid
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             bakgrund = Content.Load<Texture2D>("bakgrund");
-            player.spriteSheet = Content.Load<Texture2D>("spritess");
+            player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //enemy1.sprite = Content.Load<Texture2D>("enemy");
             
