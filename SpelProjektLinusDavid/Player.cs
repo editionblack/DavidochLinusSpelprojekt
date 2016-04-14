@@ -14,7 +14,7 @@ namespace SpelProjektLinusDavid
         public Texture2D spriteSheet, sprite;
         //public float distance;
         Rectangle hitbox;
-        public float speed;
+        public float speed = 5;
         public int health;
 
         Rectangle sourceRectangle;
@@ -49,7 +49,7 @@ namespace SpelProjektLinusDavid
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
             health = 100;
-            sourceRectangle = new Rectangle(0, 0, 48, 40);
+            sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
 
         public void Update()
