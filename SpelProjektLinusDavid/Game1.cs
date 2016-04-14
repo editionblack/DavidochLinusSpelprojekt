@@ -209,7 +209,7 @@ namespace SpelProjektLinusDavid
             {
                 //Game newGame = new Game1();
                 //newGame.Run();
-                Environment.Exit(0);
+                //Environment.Exit(0);
             }
             base.Update(gameTime);
         }

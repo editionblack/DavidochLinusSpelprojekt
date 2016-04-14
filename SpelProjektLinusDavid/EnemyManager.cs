@@ -7,17 +7,17 @@ namespace SpelProjektLinusDavid
 {
     class EnemyManager
     {
-        Enemies enemy1;
-        List<Enemies> enemies;
+        //Enemies enemy1;
+        //List<Enemies> enemies;
 
 
 
 
 
-        public void Update() 
-        { 
+        //public void Update() 
+        //{ 
         
         
-        }
+        //}
     }
 }
