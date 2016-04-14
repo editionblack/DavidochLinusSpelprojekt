@@ -10,9 +10,6 @@ namespace SpelProjektLinusDavid
 {
 
 
-    /// <summary>
-    /// TRYCK PÅ "K" FÖR ATT SPAWNA FIENDEN, JAG HAR FÖRSÖKT ATT KUNNA SPAWNA FLERA, WITHOUT SUCCESS :(
-    /// </summary>
     class Projectiles
     {
         public Vector2 position, velocity;
