@@ -207,9 +207,9 @@ namespace SpelProjektLinusDavid
             //}
             if (player.health == 0 || player.health < 0)
             {
-                //Game newGame = new Game1();
-                //newGame.Run();
-                //Environment.Exit(0);
+                Game newGame = new Game1();
+                newGame.Run();
+                Environment.Exit(0);
             }
             base.Update(gameTime);
         }
