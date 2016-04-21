@@ -243,6 +243,9 @@ namespace SpelProjektLinusDavid
 
             base.Draw(gameTime);
 
+
+            string amountOfDeadEnemies;
+
             
         }
     }

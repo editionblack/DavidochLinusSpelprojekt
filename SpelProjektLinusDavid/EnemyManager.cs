@@ -14,10 +14,10 @@ namespace SpelProjektLinusDavid
 
 
 
-        //public void Update() 
-        //{ 
+        public void Update() 
+        { 
         
         
-        //}
+        }
     }
 }
