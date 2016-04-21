@@ -14,7 +14,7 @@ namespace SpelProjektLinusDavid
         public Texture2D spriteSheet, sprite;
         //public float distance;
         Rectangle hitbox;
-        public float speed;
+        public float speed = 5;
         public int health;
 
         Rectangle sourceRectangle;
