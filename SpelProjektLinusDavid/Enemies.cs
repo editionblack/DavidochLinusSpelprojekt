@@ -17,6 +17,7 @@ namespace SpelProjektLinusDavid
         public Vector2 position, velocity;
         public Texture2D spriteSheet, sprite;
         public float speed = 3;
+        
 
 
         Rectangle sourceRectangle;

@@ -34,9 +34,9 @@ namespace SpelProjektLinusDavid
         protected override void Initialize()
         {
             player = new Player();
-            enemy1 = new Enemies();
-            enemies = new List<Enemies>();
-            lastEnemy = 0;
+                enemy1 = new Enemies();
+                enemies = new List<Enemies>();
+                lastEnemy = 0;
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
             cooldown = 500;
@@ -82,7 +82,7 @@ namespace SpelProjektLinusDavid
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
 
-            #region Spawn
+            #region Waving 
             for (int i = 0; i < amountPerWave; i++)
                 {
                     if (lastEnemy > enemyCooldown && enemies.Count < amountPerWave && totalEnemiesCount < amountPerWave)
@@ -92,8 +92,6 @@ namespace SpelProjektLinusDavid
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
                         totalEnemiesCount++;
-                        Random rndX = new Random();
-                        newEnemy.position = new Vector2(rndX.Next(-2000, 2000));
                     }
                 }
                 if (totalEnemiesCount > 0 && enemies.Count == 0)
@@ -103,8 +101,8 @@ namespace SpelProjektLinusDavid
                 }
             #endregion
 
-            #region Movement
-            if (pressedKeys.IsKeyDown(Keys.W))
+                #region Movement
+                if (pressedKeys.IsKeyDown(Keys.W))
             {
                 player.velocity.Y = -player.speed;
             }
@@ -125,8 +123,8 @@ namespace SpelProjektLinusDavid
             else player.velocity.X = 0;
             #endregion
 
-            #region Bullet controll
-            if (lastShot > cooldown)
+            #region Bullet control
+            if (lastShot > player.shootCooldown)
             {
                 if (pressedKeys.IsKeyDown(Keys.Left))
                 {
@@ -167,7 +165,15 @@ namespace SpelProjektLinusDavid
             }
             #endregion
 
-
+            //Crude progression
+            if (player.experiencePoints == 10)
+            {
+                if (player.shootCooldown > 410)
+                {
+                    player.shootCooldown -= 10;
+                }
+                player.experiencePoints = 0;
+            }
 
 
             player.Update();
@@ -194,13 +200,15 @@ namespace SpelProjektLinusDavid
                         {
                             bullets.RemoveAt(i);
                             enemies.RemoveAt(j);
+                            player.experiencePoints++;
                             if (bullets.Count == 0)
-                                break;
+                                goto outOfLoop; //Subject to change
                             else
                                 i--;
                         }
                 }
             }
+            outOfLoop: //Subject to change
 
             for (int i = 0; i < enemies.Count; i++) 
             {
