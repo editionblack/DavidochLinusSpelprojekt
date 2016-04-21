@@ -17,7 +17,7 @@ namespace SpelProjektLinusDavid
 
 
         Texture2D bakgrund;
-        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown;
+        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown, wave;
         Player player;
         Enemies enemy1;
         Projectiles bullet;
@@ -44,6 +44,7 @@ namespace SpelProjektLinusDavid
             lastShot = 0;
             lastHit = 0;
             amountPerWave = 10;
+            wave = 1;
             base.Initialize();
         }
 
@@ -79,9 +80,11 @@ namespace SpelProjektLinusDavid
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
-            if (enemies.Count < amountPerWave)
-                {
+            if (wave == 1)
+            {
 
+                for (int i = 0; i < amountPerWave; i++)
+                {
                     if (lastEnemy > enemyCooldown)
                     {
                         Enemies newEnemy = new Enemies();
@@ -90,7 +93,8 @@ namespace SpelProjektLinusDavid
                         lastEnemy = 0;
                     }
                 }
-
+              
+            }
             #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
             {
@@ -207,9 +211,9 @@ namespace SpelProjektLinusDavid
             //}
             if (player.health == 0 || player.health < 0)
             {
-                //Game newGame = new Game1();
-                //newGame.Run();
-                //Environment.Exit(0);
+                Game newGame = new Game1();
+                newGame.Run();
+                Environment.Exit(0);
             }
             base.Update(gameTime);
         }

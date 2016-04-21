@@ -37,8 +37,8 @@ namespace SpelProjektLinusDavid
             {
                 hitbox.X = (int)position.X;
                 hitbox.Y = (int)position.Y;
-                hitbox.Width = spriteSheet.Width;
-                hitbox.Height = spriteSheet.Height;
+                hitbox.Width = 48;
+                hitbox.Height = 60;
                 return hitbox;
             }
         }
