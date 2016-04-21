@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health;
+        public int health, shootCooldown, experiencePoints;
 
         Rectangle sourceRectangle;
 
@@ -50,6 +50,8 @@ namespace SpelProjektLinusDavid
             hitbox = new Rectangle();
             speed = 5;
             health = 100;
+            shootCooldown = 750;
+            experiencePoints = 0;
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
 

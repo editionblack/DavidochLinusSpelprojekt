@@ -81,9 +81,9 @@ namespace SpelProjektLinusDavid
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
-            
 
-                for (int i = 0; i < amountPerWave; i++)
+            #region Waving 
+            for (int i = 0; i < amountPerWave; i++)
                 {
                     if (lastEnemy > enemyCooldown && enemies.Count < amountPerWave && totalEnemiesCount < amountPerWave)
                     {
@@ -99,8 +99,10 @@ namespace SpelProjektLinusDavid
                     totalEnemiesCount = 0;
                     amountPerWave += 2;
                 }
-            #region Movement
-            if (pressedKeys.IsKeyDown(Keys.W))
+            #endregion
+
+                #region Movement
+                if (pressedKeys.IsKeyDown(Keys.W))
             {
                 player.velocity.Y = -player.speed;
             }
@@ -121,8 +123,8 @@ namespace SpelProjektLinusDavid
             else player.velocity.X = 0;
             #endregion
 
-            #region Bullet controll
-            if (lastShot > cooldown)
+            #region Bullet control
+            if (lastShot > player.shootCooldown)
             {
                 if (pressedKeys.IsKeyDown(Keys.Left))
                 {
@@ -163,7 +165,15 @@ namespace SpelProjektLinusDavid
             }
             #endregion
 
-
+            //Crude progression
+            if (player.experiencePoints == 10)
+            {
+                if (player.shootCooldown > 410)
+                {
+                    player.shootCooldown -= 10;
+                }
+                player.experiencePoints = 0;
+            }
 
 
             player.Update();
@@ -190,13 +200,15 @@ namespace SpelProjektLinusDavid
                         {
                             bullets.RemoveAt(i);
                             enemies.RemoveAt(j);
+                            player.experiencePoints++;
                             if (bullets.Count == 0)
-                                break;
+                                goto outOfLoop; //Subject to change
                             else
                                 i--;
                         }
                 }
             }
+            outOfLoop: //Subject to change
 
             for (int i = 0; i < enemies.Count; i++) 
             {
