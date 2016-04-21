@@ -39,7 +39,7 @@ namespace SpelProjektLinusDavid
         //    hitbox = new Rectangle();
         //}
 
-        public Vector2 startPoint = new Vector2(50,50);
+        public Vector2 startPoint = new Vector2(50, 50);
 
         public void EnemiesHitbox(float velocityX, float velocityY)
         {

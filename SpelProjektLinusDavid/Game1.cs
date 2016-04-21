@@ -34,9 +34,9 @@ namespace SpelProjektLinusDavid
         protected override void Initialize()
         {
             player = new Player();
-                enemy1 = new Enemies();
-                enemies = new List<Enemies>();
-                lastEnemy = 0;
+            enemy1 = new Enemies();
+            enemies = new List<Enemies>();
+            lastEnemy = 0;
             bullet = new Projectiles();
             bullets = new List<Projectiles>();
             cooldown = 500;
@@ -81,9 +81,9 @@ namespace SpelProjektLinusDavid
 
             KeyboardState pressedKeys = Keyboard.GetState();
             //Spawnar en enemy
-            
 
-                for (int i = 0; i < amountPerWave; i++)
+            #region Spawn
+            for (int i = 0; i < amountPerWave; i++)
                 {
                     if (lastEnemy > enemyCooldown && enemies.Count < amountPerWave && totalEnemiesCount < amountPerWave)
                     {
@@ -92,6 +92,8 @@ namespace SpelProjektLinusDavid
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
                         totalEnemiesCount++;
+                        Random rndX = new Random();
+                        newEnemy.position = new Vector2(rndX.Next(-2000, 2000));
                     }
                 }
                 if (totalEnemiesCount > 0 && enemies.Count == 0)
@@ -99,6 +101,8 @@ namespace SpelProjektLinusDavid
                     totalEnemiesCount = 0;
                     amountPerWave += 2;
                 }
+            #endregion
+
             #region Movement
             if (pressedKeys.IsKeyDown(Keys.W))
             {
