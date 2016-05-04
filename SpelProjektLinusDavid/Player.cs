@@ -11,12 +11,12 @@ namespace SpelProjektLinusDavid
     class Player
     {
         public Vector2 position, velocity;
-        public Texture2D spriteSheet, sprite;
+        public Texture2D spriteSheet;
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
         public int health, shootCooldown, experiencePoints, level, manaPoints;
-        public string profession; //Really experimental, might make it to later stages if interesting enough
+        //public string profession; 
 
         Rectangle sourceRectangle;
 
@@ -51,11 +51,11 @@ namespace SpelProjektLinusDavid
             hitbox = new Rectangle();
             speed = 5;
             health = 100;
-            manaPoints = 0;
+            //manaPoints = 0;
             shootCooldown = 750;
             experiencePoints = 0;
             level = 1;
-            profession = "Blank";
+           // profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
 
