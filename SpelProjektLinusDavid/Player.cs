@@ -15,7 +15,8 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health, shootCooldown, experiencePoints;
+        public int health, shootCooldown, experiencePoints, level, manaPoints;
+        public string profession; //Really experimental, might make it to later stages if interesting enough
 
         Rectangle sourceRectangle;
 
@@ -50,8 +51,11 @@ namespace SpelProjektLinusDavid
             hitbox = new Rectangle();
             speed = 5;
             health = 100;
+            manaPoints = 0;
             shootCooldown = 750;
             experiencePoints = 0;
+            level = 1;
+            profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
 

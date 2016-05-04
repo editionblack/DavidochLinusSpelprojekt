@@ -69,7 +69,7 @@ namespace SpelProjektLinusDavid
             velocity *= speed;
             position += velocity;
 
-            //Vector2.Distance()        THIS IS WHAT WE USE FOR HITBOX, IT I GENIUS MODE I PROMISE
+            //Vector2.Distance()        THIS IS WHAT WE USE FOR HITBOX, IT IS GENIUS MODE I PROMISE
         }
 
         

@@ -14,7 +14,7 @@ namespace SpelProjektLinusDavid
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        SpriteFont font;
 
         Texture2D bakgrund;
         float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown, wave, totalEnemiesCount;
@@ -23,6 +23,7 @@ namespace SpelProjektLinusDavid
         Projectiles bullet;
         List<Projectiles> bullets;
         List<Enemies> enemies;
+        Color healthColor, bulletColor;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,6 +47,9 @@ namespace SpelProjektLinusDavid
             amountPerWave = 10;
             totalEnemiesCount = 0;
             wave = 1;
+            healthColor = Color.Black;
+            bulletColor = Color.White;
+            player.profession = "Vampire";
             base.Initialize();
         }
 
@@ -55,6 +59,7 @@ namespace SpelProjektLinusDavid
             bakgrund = Content.Load<Texture2D>("bakgrund");
             player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("font");
             //enemy1.sprite = Content.Load<Texture2D>("enemy");
             
             foreach(Enemies enemy in enemies)
@@ -168,12 +173,34 @@ namespace SpelProjektLinusDavid
             //Crude progression
             if (player.experiencePoints == 10)
             {
+               
                 if (player.shootCooldown > 410)
                 {
                     player.shootCooldown -= 10;
                 }
                 player.experiencePoints = 0;
+                player.level++;
             }
+
+            #region Professions control
+
+            if(player.profession == "Vampire") 
+            {
+                if (pressedKeys.IsKeyDown(Keys.Space) && player.health < 100 && player.manaPoints > 5)
+                {
+                    player.health += 25;
+                    player.manaPoints -= 5;
+                   
+                }
+            }
+
+
+
+
+
+
+
+            #endregion
 
 
             player.Update();
@@ -201,6 +228,7 @@ namespace SpelProjektLinusDavid
                             bullets.RemoveAt(i);
                             enemies.RemoveAt(j);
                             player.experiencePoints++;
+                            player.manaPoints++;
                             if (bullets.Count == 0)
                                 goto outOfLoop; //Subject to change
                             else
@@ -217,6 +245,7 @@ namespace SpelProjektLinusDavid
                     if (lastHit > cooldown)
                     {
                         player.health -= 25;
+                        
                         lastHit = 0;
                     }
                 }
@@ -253,18 +282,31 @@ namespace SpelProjektLinusDavid
             //spriteBatch.Draw(player.spriteSheet, player.position, Color.White);
             foreach (Projectiles bullet in bullets) 
             {
-                spriteBatch.Draw(bullet.sprite, bullet.position, Color.White);
+                spriteBatch.Draw(bullet.sprite, bullet.position, bulletColor);
             
             }
-
+            
             player.Draw(gameTime, spriteBatch);
 
+            spriteBatch.DrawString(font,player.health.ToString(), Vector2.Zero, healthColor);
+
+            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(50,50), Color.Black);
+            if (player.health == 75 || player.health == 50)
+            {
+                healthColor = Color.Yellow;
+            }
+            else if (player.health == 25)
+            {
+                healthColor = Color.Red;
+            }
+            else
+                healthColor = Color.Black;
             spriteBatch.End();
 
             base.Draw(gameTime);
 
 
-            string amountOfDeadEnemies;
+            
 
             
         }
