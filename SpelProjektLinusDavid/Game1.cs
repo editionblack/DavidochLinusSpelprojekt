@@ -292,7 +292,7 @@ namespace SpelProjektLinusDavid
 
             spriteBatch.DrawString(font,player.health.ToString(), Vector2.Zero, healthColor);
 
-            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(50,50), Color.Black);
+            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(), Color.Black);
             if (player.health == 75 || player.health == 50)
             {
                 healthColor = Color.Yellow;
