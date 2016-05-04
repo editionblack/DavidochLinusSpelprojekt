@@ -93,7 +93,7 @@ namespace SpelProjektLinusDavid
             }
 
 
-            #region
+            #region Bullshit
             //Hur kollision
             //if (position.X + sprite.Width > 73)
             //{
