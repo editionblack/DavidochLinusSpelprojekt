@@ -49,7 +49,7 @@ namespace SpelProjektLinusDavid
             wave = 1;
             healthColor = Color.Black;
             bulletColor = Color.White;
-            player.profession = "Vampire";
+            //player.profession = "Vampire";
             base.Initialize();
         }
 
@@ -172,7 +172,7 @@ namespace SpelProjektLinusDavid
             }
             #endregion
 
-            //Crude progression
+            #region Progression!
             if (player.experiencePoints == 10)
             {
                
@@ -183,25 +183,19 @@ namespace SpelProjektLinusDavid
                 player.experiencePoints = 0;
                 player.level++;
             }
+            #endregion
 
             #region Professions control
 
-            if(player.profession == "Vampire") 
-            {
-                if (pressedKeys.IsKeyDown(Keys.Space) && player.health < 100 && player.manaPoints > 5)
-                {
-                    player.health += 25;
-                    player.manaPoints -= 5;
+            //if(player.profession == "Vampire") 
+            //{
+            //    if (pressedKeys.IsKeyDown(Keys.Space) && player.health < 100 && player.manaPoints > 5)
+            //    {
+            //        player.health += 25;
+            //        player.manaPoints -= 5;
                    
-                }
-            }
-
-
-
-
-
-
-
+            //    }
+            //}
             #endregion
 
 
@@ -230,15 +224,15 @@ namespace SpelProjektLinusDavid
                             bullets.RemoveAt(i);
                             enemies.RemoveAt(j);
                             player.experiencePoints++;
-                            player.manaPoints++;
+                            //player.manaPoints++;
                             if (bullets.Count == 0)
-                                goto outOfLoop; //Subject to change
+                                goto outOfLoop; 
                             else
                                 i--;
                         }
                 }
             }
-            outOfLoop: //Subject to change
+            outOfLoop: 
 
             for (int i = 0; i < enemies.Count; i++) 
             {
@@ -290,9 +284,9 @@ namespace SpelProjektLinusDavid
             
             player.Draw(gameTime, spriteBatch);
 
-            spriteBatch.DrawString(font,player.health.ToString(), Vector2.Zero, healthColor);
+            spriteBatch.DrawString(font,player.health.ToString(),new Vector2(5,75), healthColor);
 
-            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(50,50), Color.Black);
+            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
             if (player.health == 75 || player.health == 50)
             {
                 healthColor = Color.Yellow;
