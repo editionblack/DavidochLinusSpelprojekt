@@ -97,8 +97,8 @@ namespace SpelProjektLinusDavid
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
                         totalEnemiesCount++;
-                        Random rndX = new Random();
-                        newEnemy.position = new Vector2(rndX.Next(-2500, 2500));
+                        Random rnd = new Random();
+                        newEnemy.position = new Vector2(rnd.Next(-2500, 2500),rnd.Next(-2500,2500));
                     }
                 }
                 if (totalEnemiesCount > 0 && enemies.Count == 0)
