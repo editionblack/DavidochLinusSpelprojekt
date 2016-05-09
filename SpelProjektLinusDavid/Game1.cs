@@ -159,6 +159,8 @@ namespace SpelProjektLinusDavid
                     bullet.sprite = Content.Load<Texture2D>("Bullet");
                     bullets.Add(bullet);
                     lastShot = 0;
+
+                    
                 }
             
                 else if (pressedKeys.IsKeyDown(Keys.Down))
@@ -240,7 +242,7 @@ namespace SpelProjektLinusDavid
                 {
                     if (lastHit > cooldown)
                     {
-                        player.health -= 25;
+                        player.health -= 10;
                         
                         lastHit = 0;
                     }
@@ -287,11 +289,11 @@ namespace SpelProjektLinusDavid
             spriteBatch.DrawString(font,player.health.ToString(),new Vector2(5,75), healthColor);
 
             spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
-            if (player.health == 75 || player.health == 50)
+            if (player.health > 30 && player.health < 71)
             {
                 healthColor = Color.Yellow;
             }
-            else if (player.health == 25)
+            else if (player.health == 30 || player.health < 30)
             {
                 healthColor = Color.Red;
             }
