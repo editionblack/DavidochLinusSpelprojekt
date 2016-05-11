@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health, shootCooldown, experiencePoints, level, manaPoints;
+        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown;
         //public string profession; 
 
         Rectangle sourceRectangle;
@@ -52,7 +52,8 @@ namespace SpelProjektLinusDavid
             speed = 5;
             health = 100;
             //manaPoints = 0;
-            shootCooldown = 750;
+            gunCooldown = 750;
+            machinegunCooldown = 250;
             experiencePoints = 0;
             level = 1;
            // profession = "Blank";
