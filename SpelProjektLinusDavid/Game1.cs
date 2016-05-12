@@ -17,7 +17,7 @@ namespace SpelProjektLinusDavid
         SpriteFont font;
         bool paused = false;
         Texture2D bakgrund;
-        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown, wave, totalEnemiesCount, currentWeapon, currentWeaponDamage;
+        float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown, wave, totalEnemiesCount, currentWeapon, currentWeaponDamage, lastReload;
         Player player;
         Enemies enemy1;
         Projectiles bullet;
@@ -44,6 +44,7 @@ namespace SpelProjektLinusDavid
             enemyCooldown = 250;
             lastShot = 0;
             lastHit = 0;
+            lastReload = 0;
             amountPerWave = 10;
             totalEnemiesCount = 0;
             wave = 1;
@@ -98,7 +99,7 @@ namespace SpelProjektLinusDavid
                 lastShot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 lastEnemy += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 lastHit += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
+                lastReload += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
 
@@ -148,7 +149,7 @@ namespace SpelProjektLinusDavid
                 #region Bullet control
                 if (currentWeapon == 1) //Gun
                 {
-                    if (lastShot > player.gunCooldown)
+                    if (lastShot > player.gunCooldown && player.gunAmmo > 0 && lastReload > player.reloadSpeed)
                     {
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
@@ -156,6 +157,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 0, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.gunAmmo--;
                             lastShot = 0;
                         }
 
@@ -166,6 +168,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, 0, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.gunAmmo--;
                             lastShot = 0;
                         }
 
@@ -175,6 +178,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, -bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.gunAmmo--;
                             lastShot = 0;
 
 
@@ -186,13 +190,14 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.gunAmmo--;
                             lastShot = 0;
                         }
                     }
                 }
                 else if (currentWeapon == 2) //Shotgun
                 {
-                    if (lastShot > player.gunCooldown)
+                    if (lastShot > player.shotgunCooldown && player.shotgunAmmo > 0 && lastReload > player.reloadSpeed)
                     {
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
@@ -206,6 +211,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -bullet.speed / 2, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.shotgunAmmo--;
                             lastShot = 0;
                         }
 
@@ -222,6 +228,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, -bullet.speed / 2, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.shotgunAmmo--;
                             lastShot = 0;
                         }
 
@@ -237,6 +244,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, -bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.shotgunAmmo--;
                             lastShot = 0;
 
 
@@ -254,13 +262,14 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.shotgunAmmo--;
                             lastShot = 0;
                         }
                     }
                 }
                 if (currentWeapon == 3) // Machinegun
                 {
-                    if (lastShot > player.machinegunCooldown / 2)
+                    if (lastShot > player.machinegunCooldown && player.machinegunAmmo > 0 && lastReload > player.reloadSpeed)
                     {
                         Random rnd = new Random();
                         if (pressedKeys.IsKeyDown(Keys.Left))
@@ -268,6 +277,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-2, 3), currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.machinegunAmmo--;
                             lastShot = 0;
                         }
 
@@ -278,6 +288,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-2, 3), currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.machinegunAmmo--;
                             lastShot = 0;
                         }
 
@@ -287,6 +298,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), -bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.machinegunAmmo--;
                             lastShot = 0;
 
 
@@ -298,6 +310,7 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
+                            player.machinegunAmmo--;
                             lastShot = 0;
                         }
                     }
@@ -333,7 +346,25 @@ namespace SpelProjektLinusDavid
 
                     currentWeapon = 3;
                 }
+                if (pressedKeys.IsKeyDown(Keys.R))
+                {
+                    if(currentWeapon == 1 && player.gunAmmo < 6)
+                    {
+                        player.gunAmmo = player.gunAmmoMax;
+                        lastReload = 0;
+                    }
+                    else if (currentWeapon == 2)
+                    {
+                        player.shotgunAmmo = player.shotgunAmmoMax;
+                        lastReload = 0;
+                    }
+                    else if (currentWeapon == 3)
+                    {
+                        player.machinegunAmmo = player.machinegunAmmoMax;
+                        lastReload = 0;
+                    }
 
+                }
 
 
 
