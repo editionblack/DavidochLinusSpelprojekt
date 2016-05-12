@@ -355,7 +355,7 @@ namespace SpelProjektLinusDavid
 
 
             player.Update();
-            
+
 
             foreach (Enemies enemyUpdate in enemies)
             {
@@ -380,7 +380,6 @@ namespace SpelProjektLinusDavid
                             enemies[j].health -= bullets[i].damage;
                             bullets.RemoveAt(i);
                             player.experiencePoints++;
-                            
                             if (bullets.Count == 0)
                                 goto outOfLoop; 
                             else
