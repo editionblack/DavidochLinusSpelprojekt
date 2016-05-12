@@ -356,6 +356,7 @@ namespace SpelProjektLinusDavid
 
             player.Update();
 
+
             foreach (Enemies enemyUpdate in enemies)
             {
                 enemyUpdate.Update(player.position);
