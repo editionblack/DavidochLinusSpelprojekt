@@ -251,7 +251,7 @@ namespace SpelProjektLinusDavid
                     Random rnd = new Random();
                     if (pressedKeys.IsKeyDown(Keys.Left))
                     {
-                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-5, 6));
+                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-2, 3));
                         bullet.sprite = Content.Load<Texture2D>("Bullet");
                         bullets.Add(bullet);
                         lastShot = 0;
@@ -261,7 +261,7 @@ namespace SpelProjektLinusDavid
                     else if (pressedKeys.IsKeyDown(Keys.Right))
                     {
                         
-                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-5, 6));
+                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-2, 3));
                         bullet.sprite = Content.Load<Texture2D>("Bullet");
                         bullets.Add(bullet);
                         lastShot = 0;
@@ -270,7 +270,7 @@ namespace SpelProjektLinusDavid
                     else if (pressedKeys.IsKeyDown(Keys.Up))
                     {
 
-                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-5, 6), -bullet.speed);
+                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), -bullet.speed);
                         bullet.sprite = Content.Load<Texture2D>("Bullet");
                         bullets.Add(bullet);
                         lastShot = 0;
@@ -281,7 +281,7 @@ namespace SpelProjektLinusDavid
                     else if (pressedKeys.IsKeyDown(Keys.Down))
                     {
 
-                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-5, 6), bullet.speed);
+                        bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), bullet.speed);
                         bullet.sprite = Content.Load<Texture2D>("Bullet");
                         bullets.Add(bullet);
                         lastShot = 0;
