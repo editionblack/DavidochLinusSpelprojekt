@@ -53,9 +53,9 @@ namespace SpelProjektLinusDavid
             health = 100;
             //manaPoints = 0;
             #region Vapen-relaterat
-            gunCooldown = 250;
+            gunCooldown = 750;
             machinegunCooldown = 125;
-            shotgunCooldown = 1000;
+            shotgunCooldown = 1250;
             gunAmmo = 6;
             shotgunAmmo = 2;
             machinegunAmmo = 40;
@@ -66,9 +66,9 @@ namespace SpelProjektLinusDavid
             #endregion
             experiencePoints = 0;
             level = 1;
-            gunDamage = 40;
-            shotgunDamage =50;
-            machinegunDamage = 20;
+            gunDamage = 50;
+            shotgunDamage = 100;
+            machinegunDamage = 25;
            // profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }

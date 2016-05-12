@@ -348,17 +348,17 @@ namespace SpelProjektLinusDavid
                 }
                 if (pressedKeys.IsKeyDown(Keys.R))
                 {
-                    if(currentWeapon == 1 && player.gunAmmo < 6)
+                    if(currentWeapon == 1 && player.gunAmmo < player.gunAmmoMax)
                     {
                         player.gunAmmo = player.gunAmmoMax;
                         lastReload = 0;
                     }
-                    else if (currentWeapon == 2)
+                    else if (currentWeapon == 2 && player.shotgunAmmo < player.shotgunAmmoMax)
                     {
                         player.shotgunAmmo = player.shotgunAmmoMax;
                         lastReload = 0;
                     }
-                    else if (currentWeapon == 3)
+                    else if (currentWeapon == 3 && player.gunAmmo < player.machinegunAmmoMax)
                     {
                         player.machinegunAmmo = player.machinegunAmmoMax;
                         lastReload = 0;
@@ -426,8 +426,9 @@ namespace SpelProjektLinusDavid
                             player.experiencePoints++;
                             if (bullets.Count == 0)
                                 goto outOfLoop;
-                            else
+                            else if (i != 0) {
                                 i--;
+                            }
                         }
                     }
                 }
@@ -445,11 +446,9 @@ namespace SpelProjektLinusDavid
                         }
                     }
                 }
-                //if(player.distance < 5)  
-                //{
-                //    Färg = Color.Red;
-                //}
-                if (player.health == 0 || player.health < 0)
+
+               
+                    if (player.health == 0 || player.health < 0)
                 {
                     Game newGame = new Game1();
                     newGame.Run();
@@ -490,7 +489,7 @@ namespace SpelProjektLinusDavid
             
             player.Draw(gameTime, spriteBatch);
 
-            spriteBatch.DrawString(font,player.health.ToString(),new Vector2(5,75), healthColor);
+            spriteBatch.DrawString(font,player.health.ToString(),player.position, healthColor);
 
             spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
             if (player.health > 30 && player.health < 71)
@@ -502,7 +501,7 @@ namespace SpelProjektLinusDavid
                 healthColor = Color.Red;
             }
             else
-                healthColor = Color.Black;
+                healthColor = Color.LightGreen;
             spriteBatch.End();
 
             base.Draw(gameTime);
