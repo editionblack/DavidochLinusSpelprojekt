@@ -28,8 +28,8 @@ namespace SpelProjektLinusDavid
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferHeight = 500;
-            graphics.PreferredBackBufferWidth = 750;
+            graphics.PreferredBackBufferHeight = 1000;
+            graphics.PreferredBackBufferWidth = 1500;
         }
 
         protected override void Initialize()
