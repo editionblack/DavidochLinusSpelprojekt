@@ -14,28 +14,22 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D sprite;
-        public float speed = 10;
-        
+        public float speed = 10, damage;
+
         public Projectiles()
         {
 
-            position = new Vector2(750/2, 500 / 2);
+            position = new Vector2(750 / 2, 500 / 2);
             velocity = new Vector2(0, 0);
             hitbox = new Rectangle();
         }
 
-        public Projectiles(float playerPositionX, float playerPositionY, float directionX, float directionY)
+        public Projectiles(float playerPositionX, float playerPositionY, float directionX, float directionY, float currWeapon)
         {
             Vector2 playerPosition = new Vector2(playerPositionX,playerPositionY);
             position = playerPosition;
             velocity = new Vector2(directionX, directionY);
-        }
-
-        public void Bullets(float velocityX, float velocityY)
-        {
-            position = new Vector2(50, 50);
-            velocity = new Vector2(velocityX, velocityY);
-            hitbox = new Rectangle();
+            damage = currWeapon;
         }
 
         Rectangle hitbox;

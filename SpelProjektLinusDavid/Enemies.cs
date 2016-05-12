@@ -16,10 +16,10 @@ namespace SpelProjektLinusDavid
     {
         public Vector2 position, velocity;
         public Texture2D spriteSheet, sprite;
-        public float speed = 3;
+        public float speed = 3, health = 100;
         
 
-
+        
         Rectangle sourceRectangle;
 
         public Vector2 Position

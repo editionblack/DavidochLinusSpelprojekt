@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown;
+        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown, gunDamage, shotgunDamage, machinegunDamage;
         //public string profession; 
 
         Rectangle sourceRectangle;
@@ -56,6 +56,9 @@ namespace SpelProjektLinusDavid
             machinegunCooldown = 250;
             experiencePoints = 0;
             level = 1;
+            gunDamage = 40;
+            shotgunDamage =50;
+            machinegunDamage = 20;
            // profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
@@ -70,9 +73,9 @@ namespace SpelProjektLinusDavid
             //Kant av banan
 
             //Höger vägg
-            if (position.X + sourceRectangle.Width > 1250)
+            if (position.X + sourceRectangle.Width > 750)
             {
-                position.X = 1250 - sourceRectangle.Width;
+                position.X = 750 - sourceRectangle.Width;
             }
 
             // Vänster vägg
@@ -82,9 +85,9 @@ namespace SpelProjektLinusDavid
             }
 
             //Nedre vägg
-            if (position.Y + sourceRectangle.Width > 730)
+            if (position.Y + sourceRectangle.Width > 750)
             {
-                position.Y = 730 - sourceRectangle.Width;
+                position.Y = 500 - sourceRectangle.Width;
             }
 
             //Övre vägg
