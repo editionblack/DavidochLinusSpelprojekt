@@ -108,12 +108,13 @@ namespace SpelProjektLinusDavid
                 {
                     if (lastEnemy > enemyCooldown && enemies.Count < amountPerWave && totalEnemiesCount < amountPerWave)
                     {
+                        Random rnd = new Random();
                         Enemies newEnemy = new Enemies();
+                        newEnemy.speed = rnd.Next(2,6);
                         newEnemy.sprite = Content.Load<Texture2D>("enemy");
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
                         totalEnemiesCount++;
-                        Random rnd = new Random();
                         newEnemy.position = new Vector2(rnd.Next(-2500, 2500), rnd.Next(-2500, 2500));
                     }
                 }
@@ -149,7 +150,7 @@ namespace SpelProjektLinusDavid
                 #region Bullet control
                 if (currentWeapon == 1) //Gun
                 {
-                    if (lastShot > player.gunCooldown && player.gunAmmo > 0 && lastReload > player.reloadSpeed)
+                    if (lastShot > player.gunCooldown && player.gunAmmo > 0 && lastReload > player.rsGun)
                     {
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
@@ -197,7 +198,8 @@ namespace SpelProjektLinusDavid
                 }
                 else if (currentWeapon == 2) //Shotgun
                 {
-                    if (lastShot > player.shotgunCooldown && player.shotgunAmmo > 0 && lastReload > player.reloadSpeed)
+                    Random rnd = new Random();
+                    if (lastShot > player.shotgunCooldown && player.shotgunAmmo > 0 && lastReload > player.rsShotgun)
                     {
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
@@ -205,14 +207,15 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 0, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, bullet.speed / 2, currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 5, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -bullet.speed / 2, currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -5, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
+
                         }
 
 
@@ -269,12 +272,12 @@ namespace SpelProjektLinusDavid
                 }
                 if (currentWeapon == 3) // Machinegun
                 {
-                    if (lastShot > player.machinegunCooldown && player.machinegunAmmo > 0 && lastReload > player.reloadSpeed)
+                    if (lastShot > player.machinegunCooldown && player.machinegunAmmo > 0 && lastReload > player.rsMachinegun)
                     {
                         Random rnd = new Random();
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-2, 3), currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-1, 2), currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
@@ -285,7 +288,7 @@ namespace SpelProjektLinusDavid
                         else if (pressedKeys.IsKeyDown(Keys.Right))
                         {
 
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-2, 3), currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-1, 2), currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
@@ -295,7 +298,7 @@ namespace SpelProjektLinusDavid
                         else if (pressedKeys.IsKeyDown(Keys.Up))
                         {
 
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), -bullet.speed, currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-1, 2), -bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
@@ -307,7 +310,7 @@ namespace SpelProjektLinusDavid
                         else if (pressedKeys.IsKeyDown(Keys.Down))
                         {
 
-                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-2, 3), bullet.speed, currentWeaponDamage);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-1, 2), bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("Bullet");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;

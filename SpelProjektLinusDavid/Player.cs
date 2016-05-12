@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown, shotgunCooldown, gunDamage, shotgunDamage, machinegunDamage, gunAmmo, shotgunAmmo, machinegunAmmo, gunAmmoMax, shotgunAmmoMax, machinegunAmmoMax, reloadSpeed;
+        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown, shotgunCooldown, gunDamage, shotgunDamage, machinegunDamage, gunAmmo, shotgunAmmo, machinegunAmmo, gunAmmoMax, shotgunAmmoMax, machinegunAmmoMax, rsGun, rsShotgun, rsMachinegun;
         //public string profession; 
 
         Rectangle sourceRectangle;
@@ -62,7 +62,9 @@ namespace SpelProjektLinusDavid
             gunAmmoMax = 6;
             shotgunAmmoMax = 2;
             machinegunAmmoMax = 40;
-            reloadSpeed = 250;
+            rsGun = 500;
+            rsShotgun = 2000;
+            rsMachinegun = 1000;
             #endregion
             experiencePoints = 0;
             level = 1;
