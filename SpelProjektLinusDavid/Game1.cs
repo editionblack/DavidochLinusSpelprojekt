@@ -380,7 +380,6 @@ namespace SpelProjektLinusDavid
                             enemies[j].health -= bullets[i].damage;
                             bullets.RemoveAt(i);
                             player.experiencePoints++;
-                            //player.manaPoints++;
                             if (bullets.Count == 0)
                                 goto outOfLoop; 
                             else
