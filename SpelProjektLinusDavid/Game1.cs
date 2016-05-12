@@ -57,7 +57,7 @@ namespace SpelProjektLinusDavid
 
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            
             bakgrund = Content.Load<Texture2D>("bakgrund");
             player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
