@@ -70,9 +70,9 @@ namespace SpelProjektLinusDavid
             //Kant av banan
 
             //Höger vägg
-            if (position.X + sourceRectangle.Width > 750)
+            if (position.X + sourceRectangle.Width > 1250)
             {
-                position.X = 750 - sourceRectangle.Width;
+                position.X = 1250 - sourceRectangle.Width;
             }
 
             // Vänster vägg
@@ -82,9 +82,9 @@ namespace SpelProjektLinusDavid
             }
 
             //Nedre vägg
-            if (position.Y + sourceRectangle.Width > 500)
+            if (position.Y + sourceRectangle.Width > 730)
             {
-                position.Y = 500 - sourceRectangle.Width;
+                position.Y = 730 - sourceRectangle.Width;
             }
 
             //Övre vägg
