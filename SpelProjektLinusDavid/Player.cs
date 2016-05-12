@@ -15,7 +15,7 @@ namespace SpelProjektLinusDavid
         //public float distance;
         Rectangle hitbox;
         public float speed = 5;
-        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown;
+        public int health, gunCooldown, experiencePoints, level, manaPoints, machinegunCooldown, gunDamage, shotgunDamage, machinegunDamage;
         //public string profession; 
 
         Rectangle sourceRectangle;
@@ -56,6 +56,9 @@ namespace SpelProjektLinusDavid
             machinegunCooldown = 250;
             experiencePoints = 0;
             level = 1;
+            gunDamage = 40;
+            shotgunDamage =50;
+            machinegunDamage = 20;
            // profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
         }
@@ -82,7 +85,7 @@ namespace SpelProjektLinusDavid
             }
 
             //Nedre vägg
-            if (position.Y + sourceRectangle.Width > 500)
+            if (position.Y + sourceRectangle.Width > 750)
             {
                 position.Y = 500 - sourceRectangle.Width;
             }
