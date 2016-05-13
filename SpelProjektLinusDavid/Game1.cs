@@ -100,7 +100,7 @@ namespace SpelProjektLinusDavid
                 lastEnemy += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 lastHit += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 lastReload += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
+                
 
 
                 #region Waving
@@ -157,7 +157,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 0, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("revolverBullet_left");
                             bullets.Add(bullet);
                             player.gunAmmo--;
                             lastShot = 0;
@@ -168,7 +168,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, 0, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("revolverBullet_right");
                             bullets.Add(bullet);
                             player.gunAmmo--;
                             lastShot = 0;
@@ -178,7 +178,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, -bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("revolverBullet_up");
                             bullets.Add(bullet);
                             player.gunAmmo--;
                             lastShot = 0;
@@ -190,7 +190,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("revolverBullet_down");
                             bullets.Add(bullet);
                             player.gunAmmo--;
                             lastShot = 0;
@@ -206,13 +206,13 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 0, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 5, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -5, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
@@ -224,13 +224,13 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, 0, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, bullet.speed / 2, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, -bullet.speed / 2, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
@@ -240,13 +240,13 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, -bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed / 2, -bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, -bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
@@ -258,13 +258,13 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 0, bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed / 2, bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
@@ -279,7 +279,7 @@ namespace SpelProjektLinusDavid
                         if (pressedKeys.IsKeyDown(Keys.Left))
                         {
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, rnd.Next(-1, 2), currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("machinegunBullet_left");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
                             lastShot = 0;
@@ -290,7 +290,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, rnd.Next(-1, 2), currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("machinegunBullet_right");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
                             lastShot = 0;
@@ -300,7 +300,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-1, 2), -bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("machinegunBullet_up");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
                             lastShot = 0;
@@ -312,7 +312,7 @@ namespace SpelProjektLinusDavid
                         {
 
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, rnd.Next(-1, 2), bullet.speed, currentWeaponDamage);
-                            bullet.sprite = Content.Load<Texture2D>("Bullet");
+                            bullet.sprite = Content.Load<Texture2D>("machinegunBullet_down");
                             bullets.Add(bullet);
                             player.machinegunAmmo--;
                             lastShot = 0;
@@ -321,14 +321,17 @@ namespace SpelProjektLinusDavid
                 }
                 if (currentWeapon == 1)
                 {
+                    //Måla ut rätt sprite
                     currentWeaponDamage = player.gunDamage;
                 }
                 if (currentWeapon == 2)
                 {
+                    //Måla ut rätt sprite
                     currentWeaponDamage = player.shotgunDamage;
                 }
                 if (currentWeapon == 3)
                 {
+                    //Måla ut rätt sprite
                     currentWeaponDamage = player.machinegunDamage;
                 }
                 #endregion
