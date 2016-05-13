@@ -29,6 +29,9 @@ namespace SpelProjektLinusDavid
             Vector2 playerPosition = new Vector2(playerPositionX,playerPositionY);
             position = playerPosition;
             velocity = new Vector2(directionX, directionY);
+            velocity.Normalize();
+            velocity *= speed;
+
             damage = currWeapon;
         }
 

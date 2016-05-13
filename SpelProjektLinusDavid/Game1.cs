@@ -498,11 +498,11 @@ namespace SpelProjektLinusDavid
             if (currentWeapon == 1 && lastReload > player.rsGun) {
             spriteBatch.DrawString(font, player.gunAmmo + "/" + player.gunAmmoMax,new Vector2 (player.position.X,player.position.Y-15),Color.Yellow);
             }
-            else if (currentWeapon == 2 && lastReload > player.rsMachinegun)
+            else if (currentWeapon == 2 && lastReload > player.rsShotgun)
             {
                 spriteBatch.DrawString(font, player.shotgunAmmo + "/" + player.shotgunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
             }
-            else if (currentWeapon == 3 && lastReload > player.rsShotgun)
+            else if (currentWeapon == 3 && lastReload > player.rsMachinegun)
             {
                 spriteBatch.DrawString(font, player.machinegunAmmo + "/" + player.machinegunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
             }

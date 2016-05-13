@@ -71,6 +71,8 @@ namespace SpelProjektLinusDavid
             #endregion
             experiencePoints = 0;
             level = 1;
+            velocity.Normalize();
+            velocity *= speed;
             
            // profession = "Blank";
             sourceRectangle = new Rectangle(0, 0, 48, 60);
@@ -78,8 +80,10 @@ namespace SpelProjektLinusDavid
 
         public void Update()
         {
-            position += velocity;
             
+            
+            position += velocity;
+           
             //Hur långt borta från fienden spelaren är
             // distance = Vector2.Distance(player, enemy);
 
