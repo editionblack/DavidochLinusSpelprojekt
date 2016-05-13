@@ -44,12 +44,12 @@ namespace SpelProjektLinusDavid
             enemyCooldown = 250;
             lastShot = 0;
             lastHit = 0;
-            lastReload = 0;
-            amountPerWave = 10;
+            lastReload = player.rsMachinegun*2;
+            amountPerWave = 20;
             totalEnemiesCount = 0;
             wave = 1;
             currentWeapon = 1;
-            healthColor = Color.Black;
+            healthColor = Color.LightGreen;
             bulletColor = Color.White;
             
             //player.profession = "Vampire";
@@ -110,7 +110,7 @@ namespace SpelProjektLinusDavid
                     {
                         Random rnd = new Random();
                         Enemies newEnemy = new Enemies();
-                        newEnemy.speed = rnd.Next(2,6);
+                        newEnemy.speed = rnd.Next(2,4);
                         newEnemy.sprite = Content.Load<Texture2D>("enemy");
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
@@ -121,7 +121,8 @@ namespace SpelProjektLinusDavid
                 if (totalEnemiesCount > 0 && enemies.Count == 0)
                 {
                     totalEnemiesCount = 0;
-                    amountPerWave += 5;
+                    amountPerWave *=2;
+                    wave++;
                 }
                 #endregion
 
@@ -375,16 +376,16 @@ namespace SpelProjektLinusDavid
                 #endregion
 
                 #region Progression!
-                if (player.experiencePoints == 10)
-                {
+                //if (player.experiencePoints == 10)
+                //{
 
-                    if (player.gunCooldown > 410)
-                    {
-                        player.gunCooldown -= 10;
-                    }
-                    player.experiencePoints = 0;
-                    player.level++;
-                }
+                //    if (player.gunCooldown > 410)
+                //    {
+                //        player.gunCooldown -= 10;
+                //    }
+                //    player.experiencePoints = 0;
+                //    player.level++;
+                //}
                 #endregion
 
                 #region Professions control
@@ -493,8 +494,24 @@ namespace SpelProjektLinusDavid
             player.Draw(gameTime, spriteBatch);
 
             spriteBatch.DrawString(font,player.health.ToString(),player.position, healthColor);
+            spriteBatch.DrawString(font, wave.ToString(), new Vector2(5,5), Color.Red);
+            if (currentWeapon == 1 && lastReload > player.rsGun) {
+            spriteBatch.DrawString(font, player.gunAmmo + "/" + player.gunAmmoMax,new Vector2 (player.position.X,player.position.Y-15),Color.Yellow);
+            }
+            else if (currentWeapon == 2 && lastReload > player.rsMachinegun)
+            {
+                spriteBatch.DrawString(font, player.shotgunAmmo + "/" + player.shotgunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+            }
+            else if (currentWeapon == 3 && lastReload > player.rsShotgun)
+            {
+                spriteBatch.DrawString(font, player.machinegunAmmo + "/" + player.machinegunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+            }
+            else
+            {
+                spriteBatch.DrawString(font, "Reloading...", new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+            }
 
-            spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
+            //spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
             if (player.health > 30 && player.health < 71)
             {
                 healthColor = Color.Yellow;
