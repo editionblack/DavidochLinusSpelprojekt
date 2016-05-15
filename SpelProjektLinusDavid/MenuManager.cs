@@ -11,30 +11,30 @@ namespace SpelProjektLinusDavid
 {
     public class MenuManager
     {
-        Menu menu;
+        //Menu menu;
 
-        public MenuManager()
-        {
-            menu = new Menu();
-            menu.OnMenuChange += menu_OnMenuChange;
+        //public MenuManager()
+        //{
+        //    menu = new Menu();
+        //    menu.OnMenuChange += menu_OnMenuChange;
                 
-        }
+        //}
 
-        public void LoadContent(string menuPath)
-        {
+        //public void LoadContent(string menuPath)
+        //{
 
-        }
-        public void UnloadContent()
-        {
+        //}
+        //public void UnloadContent()
+        //{
 
-        }
-        public void Update(GameTime gameTime)
-        {
+        //}
+        //public void Update(GameTime gameTime)
+        //{
 
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
+        //}
+        //public void Draw(SpriteBatch spriteBatch)
+        //{
 
-        }
+        //}
     }
 }
