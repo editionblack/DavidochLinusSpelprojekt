@@ -10,6 +10,6 @@ namespace SpelProjektLinusDavid
     {
         //public string LinkType;
         //public string LinkID;
-        //public Image image;
+        //public image image;
     }
 }

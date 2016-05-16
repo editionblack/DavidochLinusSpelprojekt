@@ -16,7 +16,7 @@ namespace SpelProjektLinusDavid
         SpriteBatch spriteBatch;
         SpriteFont font;
         bool paused = false;
-        Texture2D bakgrund;
+        Texture2D bakgrund,healthbar;
         float cooldown, lastShot, lastEnemy, lastHit, amountPerWave, enemyCooldown, wave, totalEnemiesCount, currentWeapon, currentWeaponDamage, lastReload;
         Player player;
         Enemies enemy1;
@@ -45,7 +45,7 @@ namespace SpelProjektLinusDavid
             lastShot = 0;
             lastHit = 0;
             lastReload = player.rsMachinegun*2;
-            amountPerWave = 20;
+            amountPerWave = 10;
             totalEnemiesCount = 0;
             wave = 1;
             currentWeapon = 1;
@@ -60,6 +60,8 @@ namespace SpelProjektLinusDavid
         {
             
             bakgrund = Content.Load<Texture2D>("bakgrund");
+            healthbar = Content.Load<Texture2D>("Healthbar100");
+           
             player.spriteSheet = Content.Load<Texture2D>("sprite-sheet");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("font");
@@ -110,7 +112,7 @@ namespace SpelProjektLinusDavid
                     {
                         Random rnd = new Random();
                         Enemies newEnemy = new Enemies();
-                        newEnemy.speed = rnd.Next(2,4);
+                        newEnemy.speed = rnd.Next(1,2);
                         newEnemy.sprite = Content.Load<Texture2D>("enemy");
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
@@ -121,8 +123,9 @@ namespace SpelProjektLinusDavid
                 if (totalEnemiesCount > 0 && enemies.Count == 0)
                 {
                     totalEnemiesCount = 0;
-                    amountPerWave *=2;
+                    amountPerWave += 5;
                     wave++;
+                    player.health += 10;
                 }
                 #endregion
 
@@ -214,6 +217,12 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -5, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, 2, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed, -2, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
 
@@ -232,6 +241,12 @@ namespace SpelProjektLinusDavid
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, -bullet.speed / 2, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, 2, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, bullet.speed, -2, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
                             player.shotgunAmmo--;
                             lastShot = 0;
                         }
@@ -246,6 +261,12 @@ namespace SpelProjektLinusDavid
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, -bullet.speed, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 2, -bullet.speed, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -2, -bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
@@ -264,6 +285,12 @@ namespace SpelProjektLinusDavid
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -bullet.speed / 2, bullet.speed, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, 2, bullet.speed, currentWeaponDamage);
+                            bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
+                            bullets.Add(bullet);
+                            bullet = new Projectiles(player.position.X + 10, player.position.Y + 10, -2, bullet.speed, currentWeaponDamage);
                             bullet.sprite = Content.Load<Texture2D>("shotgunBullet");
                             bullets.Add(bullet);
                             player.shotgunAmmo--;
@@ -468,6 +495,16 @@ namespace SpelProjektLinusDavid
                         enemies.RemoveAt(i);
                     }
                 }
+
+                for(int i = 0; i < enemies.Count; i++)
+                {
+                    if(enemies[i].position.X < player.position.X)
+                    {
+                        enemies[i].sprite = Content.Load<Texture2D>("enemy");
+                    }
+                    else
+                        enemies[i].sprite = Content.Load<Texture2D>("enemyLeft");
+                }
                 base.Update(gameTime);
             }
         }
@@ -476,7 +513,7 @@ namespace SpelProjektLinusDavid
             //Bakgrund målas alltid ut först
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, null);
 
-            spriteBatch.Draw(bakgrund, Vector2.Zero, Color.White);
+            spriteBatch.Draw(bakgrund, Vector2.Zero, Color.CornflowerBlue);
             //spriteBatch.Draw(enemy1.sprite, enemy1.startPoint, Color.White);
 
             foreach (Enemies enemy in enemies)
@@ -496,35 +533,65 @@ namespace SpelProjektLinusDavid
             
             player.Draw(gameTime, spriteBatch);
 
-            spriteBatch.DrawString(font,player.health.ToString(),player.position, healthColor);
+            
             spriteBatch.DrawString(font, wave.ToString(), new Vector2(5,5), Color.Red);
+
             if (currentWeapon == 1 && lastReload > player.rsGun) {
-            spriteBatch.DrawString(font, player.gunAmmo + "/" + player.gunAmmoMax,new Vector2 (player.position.X,player.position.Y-15),Color.Yellow);
+            spriteBatch.DrawString(font, player.gunAmmo + "/" + player.gunAmmoMax,new Vector2 (0,670),Color.Black);
             }
             else if (currentWeapon == 2 && lastReload > player.rsShotgun)
             {
-                spriteBatch.DrawString(font, player.shotgunAmmo + "/" + player.shotgunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+                spriteBatch.DrawString(font, player.shotgunAmmo + "/" + player.shotgunAmmoMax, new Vector2(0, 670), Color.Black);
             }
             else if (currentWeapon == 3 && lastReload > player.rsMachinegun)
             {
-                spriteBatch.DrawString(font, player.machinegunAmmo + "/" + player.machinegunAmmoMax, new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+                spriteBatch.DrawString(font, player.machinegunAmmo + "/" + player.machinegunAmmoMax, new Vector2(0, 670), Color.Black);
             }
             else
             {
-                spriteBatch.DrawString(font, "Reloading...", new Vector2(player.position.X, player.position.Y - 15), Color.Yellow);
+                spriteBatch.DrawString(font, "Reloading...", new Vector2(0, 670), Color.Black);
             }
 
             //spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
-            if (player.health > 30 && player.health < 71)
+            //Här ritas heathbaren ut, memes memes broken dreams
+                spriteBatch.Draw(healthbar, new Vector2(0,750-healthbar.Height), Color.White);
+            if(player.health == 90)
             {
-                healthColor = Color.Yellow;
+                healthbar = Content.Load<Texture2D>("Healthbar90");
             }
-            else if (player.health == 30 || player.health < 30)
+            else if (player.health == 80)
             {
-                healthColor = Color.Red;
+                healthbar = Content.Load<Texture2D>("Healthbar80");
             }
-            else
-                healthColor = Color.LightGreen;
+            else if (player.health == 70)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar70");
+            }
+            else if (player.health == 60)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar60");
+            }
+            else if (player.health == 50)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar50");
+            }
+            else if (player.health == 40)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar40");
+            }
+            else if (player.health == 30)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar30");
+            }
+            else if (player.health == 20)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar20");
+            }
+            else if (player.health == 10)
+            {
+                healthbar = Content.Load<Texture2D>("Healthbar10");
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
