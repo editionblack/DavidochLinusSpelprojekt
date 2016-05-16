@@ -8,8 +8,8 @@ namespace SpelProjektLinusDavid
 {
     public class MenuItem
     {
-        public string LinkType;
-        public string LinkID;
-        public image image;
+        //public string LinkType;
+        //public string LinkID;
+        //public Image image;
     }
 }
