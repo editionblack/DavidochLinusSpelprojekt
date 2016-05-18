@@ -200,9 +200,12 @@ namespace SpelProjektLinusDavid
                         sourceRectangle.X = 0;
                     }
                 }
-
             }
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
+
+            //VÄNDER PÅ VÅRAN SPRITE-SHEET, TA INTE BORT MÅSTE KANSKE HA DEN SENARE!!!!!!!!!!!!s
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
         }
     }
 }

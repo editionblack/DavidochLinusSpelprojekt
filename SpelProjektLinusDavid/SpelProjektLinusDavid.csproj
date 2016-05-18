@@ -57,6 +57,7 @@
     <Compile Include="TitleMenu.cs" />
     <Compile Include="TitleScreen.cs" />
     <Compile Include="Walls.cs" />
+    <Compile Include="XmlManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

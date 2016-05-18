@@ -112,7 +112,7 @@ namespace SpelProjektLinusDavid
                     {
                         Random rnd = new Random();
                         Enemies newEnemy = new Enemies();
-                        newEnemy.speed = rnd.Next(1,2);
+                        newEnemy.speed = rnd.Next(1,4);
                         newEnemy.sprite = Content.Load<Texture2D>("enemy");
                         enemies.Add(newEnemy);
                         lastEnemy = 0;
@@ -554,7 +554,9 @@ namespace SpelProjektLinusDavid
 
             //spriteBatch.DrawString(font, player.level.ToString(), new Vector2(5,125), Color.Black);
             //Här ritas heathbaren ut, memes memes broken dreams
-                spriteBatch.Draw(healthbar, new Vector2(0,750-healthbar.Height), Color.White);
+
+            #region Healthbar
+            spriteBatch.Draw(healthbar, new Vector2(0,750-healthbar.Height), Color.White);
             if(player.health == 90)
             {
                 healthbar = Content.Load<Texture2D>("Healthbar90");
@@ -592,14 +594,11 @@ namespace SpelProjektLinusDavid
                 healthbar = Content.Load<Texture2D>("Healthbar10");
             }
 
+            #endregion
+
             spriteBatch.End();
 
             base.Draw(gameTime);
-
-
-            
-
-            
         }
     }
 }
